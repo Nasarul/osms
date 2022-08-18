@@ -33,8 +33,6 @@ include_once('../includes/header.php')
                 <label for="name">Course Name</label>
                 <input type="text" class="form-control" name="course_name" placeholder="Enter Subjects code" value="">
               </div>
-
-
               <div class="form-group">
                 <label for="name">Subject Code</label>
                 <input type="text" class="form-control" name="code" placeholder="Enter Subjects code" value="">
@@ -43,7 +41,7 @@ include_once('../includes/header.php')
                 <input type="text" class="form-control" name="name" placeholder="Enter Subjects name" value="">
               </div>
               <label for="name">Lecture</label>
-                <input type="file" class="form-control" name="lecture" placeholder="Enter Subjects name" value="">
+                <input type="file" class="form-control" name="lecture" placeholder="Enter lecture" value="">
               </div>
 
               <div class="form-group">
