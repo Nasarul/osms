@@ -8,7 +8,7 @@ include('../config/dbcon.php');
 
   <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
     <div class="container">
-      <a class="navbar-brand" href="index.php">Lecture Information</a>
+      <!-- <a class="navbar-brand" href="index.php">Lecture Information</a> -->
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -25,14 +25,14 @@ include('../config/dbcon.php');
     <div class="row justify-content-center">
       <div class="col-md-6">
         <div class="card">
-          <div class="card-header">Lecture Informations</div>
+          <div class="card-header"><h4>Lecture Informations<h4></div>
           <div class="card-body">
             <form class="" action="saveLecture.php" method="post" enctype="multipart/form-data">
               <div class="form-group">
 
                 <div class="form-group">
                   <label for="name">Course Name</label>
-     
+
                   <?php
                   $sql = "SELECT * FROM tblcourse;";
                   $result = mysqli_query($conn, $sql);
@@ -53,7 +53,7 @@ include('../config/dbcon.php');
 
                 <div class="form-group">
                   <label for="name">Subject Name</label>
-                 
+
                   <?php
                   $sql = "SELECT * FROM tblsubject";
                   $result = mysqli_query($conn, $sql);
@@ -75,7 +75,7 @@ include('../config/dbcon.php');
 
                 <div class="form-group">
                   <label for="name">Facilitator Name</label>
-                               
+
                   <?php
                   $sql = "SELECT * FROM tblteacher;";
                   $result = mysqli_query($conn, $sql);
