@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('deleteTeacher.php');
+include('deleteFacilitator.php');
 include('../includes/header.php');
 // include("../includes/sidebar.php");
 // include("../includes/topbar.php");
@@ -16,7 +16,7 @@ include('../includes/header.php');
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto"></ul>
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item"><a class="btn btn-primary" href="addTeacher.php"><i class="fa fa-user-plus"></i>Add Facilitator's Info</a></li><br></br>
+          <li class="nav-item"><a class="btn btn-primary" href="addFacilitator.php"><i class="fa fa-user-plus"></i>Add Facilitator's Info</a></li><br></br>
           <li class="nav-item"><a class="btn btn-outline-danger" href="../index.php"><i class="fa fa-sign-out-alt"></i>Back to Dashboard</a></li>
         </ul>
       </div>
@@ -33,7 +33,7 @@ include('../includes/header.php');
                 <tr>
                   <th>SL.</th>
                   <th style="text-align:center">Image</th>
-                  <th style="text-align:center">Name</th>
+                  <th style="text-align:center">Facilitator Name</th>
                   <th style="text-align:center">Designation</th>
                   <th style="text-align:center">Organization</th>
                   <!-- not displayed email and mobile field -->
@@ -46,7 +46,7 @@ include('../includes/header.php');
               <tbody>
                 <?php
                 $i=1;
-                $sql = "SELECT * FROM tblteacher";
+                $sql = "SELECT * FROM tblfacilitator";
                 $result = mysqli_query($conn, $sql);
                 if (mysqli_num_rows($result)) {
                   while ($row = mysqli_fetch_assoc($result)) {
@@ -54,16 +54,16 @@ include('../includes/header.php');
                     <tr>
                       <td><?php echo $i ?></td>
                       <td style="text-align:center"><img src="<?php echo $upload_dir . $row['image'] ?>" height="40"></td>
-                      <td><?php echo $row['name'] ?></td>
+                      <td><?php echo $row['facilitator_name'] ?></td>
                       <td><?php echo $row['designation'] ?></td>
                       <td><?php echo $row['organization'] ?></td>
                       <!-- not displayed email and mobile field -->
                       <!-- <td><?php echo $row['email'] ?></td>-->
                       <td><?php echo $row['mobile'] ?></td>
                       <td class="text-center">
-                        <a href="viewTeacher.php?tech_id=<?php echo $row['tech_id'] ?>" class="btn btn-success" title="View Profile"><i class="fa fa-eye"></i></a>
-                        <a href="editTeacher.php?tech_id=<?php echo $row['tech_id'] ?>" class="btn btn-info" title="Edit Profile"><i class="fa fa-user-edit"></i></a>
-                        <a href="index.php?delete=<?php echo $row['tech_id'] ?>" class="btn btn-danger" title="Delete Profile" onclick="return confirm('Are you sure to delete this record?')"><i class="fa fa-trash-alt"></i></a>
+                        <a href="viewFacilitator.php?facilitator_id=<?php echo $row['facilitator_id'] ?>" class="btn btn-success" title="View Profile"><i class="fa fa-eye"></i></a>
+                        <a href="editFacilitator.php?facilitator_id=<?php echo $row['facilitator_id'] ?>" class="btn btn-info" title="Edit Profile"><i class="fa fa-user-edit"></i></a>
+                        <a href="index.php?delete=<?php echo $row['facilitator_id'] ?>" class="btn btn-danger" title="Delete Profile" onclick="return confirm('Are you sure to delete this record?')"><i class="fa fa-trash-alt"></i></a>
                       </td>
                     </tr>
                 <?php

@@ -1,14 +1,16 @@
 <?php
 include('../config/dbcon.php');
+$upload_dir = '../uploads/trainee/';
 
 if (isset($_GET['delete'])) {
-  $course_id = $_GET['delete'];
-  $sql = "SELECT * FROM tblcourse WHERE course_id=" . $course_id;
+  $trainee_id = $_GET['delete'];
+  $sql = "SELECT * FROM tbltrainee WHERE trainee_id=" . $trainee_id;
   $result = mysqli_query($conn, $sql);
   if (mysqli_num_rows($result) > 0) {
     $row = mysqli_fetch_assoc($result);
- 
-    $sql = "DELETE FROM tblcourse WHERE course_id=" . $course_id;
+    $image = $row['image'];
+    unlink($upload_dir . $image);
+    $sql = "DELETE FROM tbltrainee WHERE trainee_id=" . $trainee_id;
     if (mysqli_query($conn, $sql)) {
       header('location:index.php');
     }

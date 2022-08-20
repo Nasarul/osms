@@ -1,6 +1,6 @@
 <?php
-include('saveTeacher.php');
-include_once('../includes/header.php')
+include('saveFacilitator.php');
+include('../includes/header.php');
 ?>
 
 <body>
@@ -26,10 +26,10 @@ include_once('../includes/header.php')
         <div class="card">
           <div class="card-header">Informations</div>
           <div class="card-body">
-            <form class="" action="saveTeacher.php" method="post" enctype="multipart/form-data">
+            <form class="" action="saveFacilitator.php" method="post" enctype="multipart/form-data">
               <div class="form-group">
                 <label for="name">Facilitator's Name</label>
-                <input type="text" class="form-control" name="name" placeholder="Enter Name" value="">
+                <input type="text" class="form-control" name="facilitator_name" placeholder="Enter Facilitator Name" value="">
               </div>
               <div class="form-group">
                 <label for="name">Facilitator's Designation</label>

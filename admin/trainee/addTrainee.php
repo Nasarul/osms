@@ -1,5 +1,5 @@
 <?php
-include('saveStudent.php');
+include('saveTrainee.php');
 include_once('../includes/header.php')
 ?>
 
@@ -25,14 +25,14 @@ include_once('../includes/header.php')
         <div class="card">
           <div class="card-header">Informations</div>
           <div class="card-body">
-            <form class="" action="saveStudent.php" method="post" enctype="multipart/form-data">
+            <form class="" action="saveTrainee.php" method="post" enctype="multipart/form-data">
               <div class="form-group">
                 <label for="name">Trainee's Roll</label>
-                <input type="text" class="form-control" name="roll" placeholder="Enter roll number" value="">
+                <input type="text" class="form-control" name="trainee_roll" placeholder="Enter trainee's roll number" value="">
               </div>
               <div class="form-group">
                 <label for="name">Trainee's Name</label>
-                <input type="text" class="form-control" name="name" placeholder="Enter Name" value="">
+                <input type="text" class="form-control" name="trainee_name" placeholder="Enter Trainee's Name" value="">
               </div>
               <div class="form-group">
                 <label for="name">Trainee's Designation</label>

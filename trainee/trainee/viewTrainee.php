@@ -1,10 +1,11 @@
 <?php
 require_once('../config/dbcon.php');
-$upload_dir = '../uploads/trainee/';
+$upload_dir = '../.././admin/uploads/trainee/';
+// $upload_dir = '';
 
-if (isset($_GET['stu_id'])) {
-  $stu_id = $_GET['stu_id'];
-  $sql = "SELECT * FROM tblstudent WHERE stu_id=" . $stu_id;
+if (isset($_GET['trainee_id'])) {
+  $trainee_id = $_GET['trainee_id'];
+  $sql = "SELECT * FROM tbltrainee WHERE trainee_id=" . $trainee_id;
   $result = mysqli_query($conn, $sql);
   if (mysqli_num_rows($result) > 0) {
     $row = mysqli_fetch_assoc($result);
@@ -36,11 +37,11 @@ include_once('../includes/header.php')
             </div>
             <div class="col-md">
               <!-- <h5 class="form-control"><i class="fa-solid fa-user"></i>
-                <span><?php echo $row['roll'] ?></span>
+                <span><?php echo $row['trainee_roll'] ?></span>
                 </i>
               </h5> -->
               <h5 class="form-control"><i class="fa-solid fa-user"></i>
-                <span><?php echo $row['name'] ?></span>
+                <span><?php echo $row['trainee_name'] ?></span>
                 </i>
               </h5>
               <h5 class="form-control"><i class="fa-solid fa-tags"></i>

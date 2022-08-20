@@ -5,13 +5,13 @@ $msg = "";
 include '../config/dbcon.php';
 
 if (isset($_GET['reset'])) {
-    if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM teausers WHERE code='{$_GET['reset']}'")) > 0) {
+    if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM facilitatorusers WHERE code='{$_GET['reset']}'")) > 0) {
         if (isset($_POST['submit'])) {
             $password = mysqli_real_escape_string($conn, md5($_POST['password']));
             $confirm_password = mysqli_real_escape_string($conn, md5($_POST['confirm-password']));
 
             if ($password === $confirm_password) {
-                $query = mysqli_query($conn, "UPDATE teausers SET password='{$password}', code='' WHERE code='{$_GET['reset']}'");
+                $query = mysqli_query($conn, "UPDATE facilitatorusers SET password='{$password}', code='' WHERE code='{$_GET['reset']}'");
 
                 if ($query) {
                     header("Location: index.php");

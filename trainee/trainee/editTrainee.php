@@ -2,11 +2,11 @@
 
 require_once('../config/dbcon.php');
 
-$upload_dir = '../uploads/trainee/';
+$upload_dir = 'admin/uploads/trainee/';
 
-if (isset($_GET['stu_id'])) {
-  $stu_id = $_GET['stu_id'];
-  $sql = "SELECT * FROM tblstudent WHERE stu_id =" . $stu_id;
+if (isset($_GET['trainee_id'])) {
+  $trainee_id = $_GET['trainee_id'];
+  $sql = "SELECT * FROM tbltrainee WHERE trainee_id =" . $trainee_id;
   $result = mysqli_query($conn, $sql);
   if (mysqli_num_rows($result) > 0) {
     $row = mysqli_fetch_assoc($result);
@@ -16,8 +16,8 @@ if (isset($_GET['stu_id'])) {
 }
 
 if (isset($_POST['Submit'])) {
-  $roll = $_POST['roll'];
-  $name = $_POST['name'];
+  $trainee_roll = $_POST['trainee_roll'];
+  $trainee_name = $_POST['trainee_name'];
   $designation = $_POST['designation'];
   $organization = $_POST['organization'];
   $email = $_POST['email'];
@@ -52,9 +52,9 @@ if (isset($_POST['Submit'])) {
   }
 
   if (!isset($errorMsg)) {
-    $sql = "UPDATE tblstudent
-									SET roll = '" . $roll . "',
-                  name = '" . $name . "',
+    $sql = "UPDATE tbltrainee
+									SET trainee_roll = '" . $trainee_roll . "',
+                  trainee_name = '" . $trainee_name . "',
                   designation = '" . $designation . "',
                   organization = '" . $organization . "',
                   email = '" . $email . "',
@@ -62,7 +62,7 @@ if (isset($_POST['Submit'])) {
                   bg = '" . $bg . "',	
                   dob = '" . $dob . "',	                 
 									image = '" . $userPic . "'
-				WHERE	stu_id=" . $stu_id;
+				WHERE	trainee_id=" . $trainee_id;
     $result = mysqli_query($conn, $sql);
     if ($result) {
       $successMsg = 'New record updated successfully';
@@ -101,11 +101,11 @@ include_once('../includes/header.php')
             <form class="" action="" method="post" enctype="multipart/form-data">
               <div class="form-group">
                 <label for="name">Trainee's roll</label>
-                <input type="text" class="form-control" name="roll" placeholder="Enter roll..." value="<?php echo $row['roll']; ?>">
+                <input type="text" class="form-control" name="trainee_roll" placeholder="Enter roll..." value="<?php echo $row['trainee_roll']; ?>">
               </div>
               <div class="form-group">
                 <label for="name">Trainee's Name</label>
-                <input type="text" class="form-control" name="name" placeholder="Enter Name..." value="<?php echo $row['name']; ?>">
+                <input type="text" class="form-control" name="trainee_name" placeholder="Enter Name..." value="<?php echo $row['trainee_name']; ?>">
               </div>
               <div class="form-group">
                 <label for="name">Trainee's Designation</label>

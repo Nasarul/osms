@@ -1,7 +1,7 @@
 <?php
 include('deleteCourse.php');
-include_once('../includes/header.php')
-// include('../includes/sidebar.php')
+include('../includes/header.php');
+// include('../includes/sidebar.php');
 ?>
 
 <body>
@@ -31,7 +31,7 @@ include_once('../includes/header.php')
               <thead>
                 <tr>
                   <th style="text-align:center">SL.</th>
-                  <th style="text-align:center">Name</th>
+                  <th style="text-align:center">Course Name</th>
                   <th style="text-align:center">Duration</th>
                   <th style="text-align:center">Actions</th>
                 </tr>
@@ -47,7 +47,7 @@ include_once('../includes/header.php')
                 ?>
                     <tr>
                       <td><?php echo $i ?></td>
-                      <td><?php echo $row['name'] ?></td>
+                      <td><?php echo $row['course_name'] ?></td>
                       <td><?php echo $row['duration'] ?></td>
                     
                       <td class="text-center">

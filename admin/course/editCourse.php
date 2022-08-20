@@ -1,6 +1,5 @@
 <?php
 require_once('../config/dbcon.php');
-// $upload_dir = '../uploads/teacher/';
 
 if (isset($_GET['course_id'])) {
   $course_id = $_GET['course_id'];
@@ -14,12 +13,12 @@ if (isset($_GET['course_id'])) {
 }
 
 if (isset($_POST['Submit'])) {
-  $name = $_POST['name'];
+  $course_name = $_POST['course_name'];
   $duration = $_POST['duration'];
  
   if (!isset($errorMsg)) {
     $sql = "UPDATE tblcourse
-									SET name = '" . $name . "',
+									SET course_name = '" . $course_name . "',
                   duration = '" . $duration . "'
 				WHERE	course_id=" . $course_id;
     $result = mysqli_query($conn, $sql);
@@ -57,7 +56,7 @@ include_once('../includes/header.php')
             <form class="" action="" method="post" enctype="multipart/form-data">
               <div class="form-group">
                 <label for="name">Course Name</label>
-                <input type="text" class="form-control" name="name" placeholder="Enter Course Name..." value="<?php echo $row['name']; ?>">
+                <input type="text" class="form-control" name="course_name" placeholder="Enter Course Name..." value="<?php echo $row['course_name']; ?>">
               </div>
               <div class="form-group">
                 <label for="name">Facilitator's Designation</label>

@@ -31,7 +31,7 @@ include_once('../includes/header.php')
           <div class="row">
             <div class="col-md">
               <h5 class="form-control"><i class="fa-solid fa-user"></i>
-                <span><?php echo $row['name'] ?></span>
+                <span><?php echo $row['course_name'] ?></span>
                 </i>
               </h5>
               <h5 class="form-control"><i class="fa-solid fa-tags"></i>

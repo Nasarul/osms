@@ -30,46 +30,39 @@ include_once('../includes/header.php')
               <thead>
                 <tr>
                   <th style="text-align:center">SL.</th>
-                  <!-- <th style="text-align:center">Course ID</th> -->
                   <th style="text-align:center">Course Name</th>
-                  <th style="text-align:center">Subject Code</th>
-                  <th style="text-align:center">Subject Name</th>
+                  <!-- <th style="text-align:center">Subject Code</th> -->
+                  <th style="text-align:center">Subject Name</th>                  
                   <th style="text-align:center">Actions</th>
                 </tr>
               </thead>
-
+              
               <tbody>
                 <?php
-                $i = 1;
-                $sql = "SELECT subject_id, course_name, code, subject_name FROM tblsubject INNER JOIN tblcourse ON tblsubject.course_id = tblcourse.course_id";
-
+                $i=1;
+                $sql = "SELECT * FROM tblsubject";
                 $result = mysqli_query($conn, $sql);
                 if (mysqli_num_rows($result)) {
                   while ($row = mysqli_fetch_assoc($result)) {
                 ?>
                     <tr>
-                      <td><?php echo $i ?></td>
-                      <!-- <td><?php echo $row['course_id'] ?></td> -->
-                      <td><?php echo $row['course_name'] ?></td>
+                    <td><?php echo $i ?></td>
+                    <td><?php echo $row['course_name'] ?></td>
                       <td><?php echo $row['code'] ?></td>
                       <td><?php echo $row['subject_name'] ?></td>
                       <!-- <td><?php echo $row['lecture'] ?></td> -->
-
-
-
+                      
                       <td class="text-center">
-                        <a href="viewSubject.php?subject_id=<?php echo $row['subject_id'] ?>" class="btn btn-success" title="View Subject"><i class="fa fa-eye"></i></a>
-                        <a href="editSubject.php?subject_id=<?php echo $row['subject_id'] ?>" class="btn btn-info" title="Edit Subject"><i class="fa fa-user-edit"></i></a>
-                        <a href="index.php?delete=<?php echo $row['subject_id'] ?>" class="btn btn-danger" title="Delete Subject" onclick="return confirm('Are you sure to delete this record?')"><i class="fa fa-trash-alt"></i></a>
+                        <a href="viewSubject.php?sub_id=<?php echo $row['sub_id'] ?>" class="btn btn-success" title="View Subject"><i class="fa fa-eye"></i></a>
+                        <a href="editSubject.php?sub_id=<?php echo $row['sub_id'] ?>" class="btn btn-info" title="Edit Subject"><i class="fa fa-user-edit"></i></a>
+                        <a href="index.php?delete=<?php echo $row['sub_id'] ?>" class="btn btn-danger" title="Delete Subject" onclick="return confirm('Are you sure to delete this record?')"><i class="fa fa-trash-alt"></i></a>
                       </td>
                     </tr>
-
                 <?php
-                    $i++;
+                $i++;
                   }
                 }
                 ?>
-
               </tbody>
             </table>
           </div>

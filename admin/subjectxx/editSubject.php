@@ -14,7 +14,7 @@ if (isset($_GET['subject_id'])) {
 }
 
 if (isset($_POST['Submit'])) {
-  $course = $_POST['course_name'];
+  $course_name = $_POST['course_name'];
   $subject_name = $_POST['subject_name'];
   $code = $_POST['code'];
 
@@ -57,7 +57,7 @@ if (isset($_POST['Submit'])) {
   if (!isset($errorMsg)) {
     $sql = "UPDATE tblsubject
 									SET subject_name = '" . $subject_name . "',
-                  course_name = '" . $course . "',
+                  course_name = '" . $course_name . "',
                   code = '" . $code . "',
                   lecture = '" . $lecture . "'
 				WHERE	subject_id=" . $subject_id;

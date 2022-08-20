@@ -21,8 +21,8 @@ if (isset($_POST['submit'])) {
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $code = mysqli_real_escape_string($conn, md5(rand()));
 
-    if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM stuusers WHERE email='{$email}'")) > 0) {
-        $query = mysqli_query($conn, "UPDATE stuusers SET code='{$code}' WHERE email='{$email}'");
+    if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM traineeusers WHERE email='{$email}'")) > 0) {
+        $query = mysqli_query($conn, "UPDATE traineeusers SET code='{$code}' WHERE email='{$email}'");
 
         if ($query) {        
             echo "<div style='display: none;'>";
@@ -68,7 +68,7 @@ if (isset($_POST['submit'])) {
 <html lang="zxx">
 
 <head>
-    <title>Login Form - OLMS</title>
+    <title>Login Form - OSMS</title>
     <!-- Meta tag Keywords -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8" />

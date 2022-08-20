@@ -1,5 +1,5 @@
 <?php
-include('deleteStudent.php');
+include('deleteTrainee.php');
 // include('../includes/topbar.php');
 include('../includes/header.php');
 // include('../includes/sidebar.php');
@@ -17,7 +17,7 @@ include('../includes/header.php');
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto"></ul>
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item"><a class="btn btn-primary" href="addStudent.php"><i class="fa fa-user-plus"></i>Add Trainee's Info</a></li>
+            <li class="nav-item"><a class="btn btn-primary" href="addTrainee.php"><i class="fa fa-user-plus"></i>Add Trainee's Info</a></li>
             <li class="nav-item"><a class="btn btn-outline-danger" href="../index.php"><i class="fa fa-sign-out-alt"></i>Back to Dashboard</a></li>
           </ul>
         </div>
@@ -35,7 +35,7 @@ include('../includes/header.php');
                     <th>SL.</th>
                     <!-- <th>Roll</th> -->
                     <th>Image</th>
-                    <th>Name</th>
+                    <th>Trainee's Name</th>
                     <th>Designation</th>
                     <th>Organization</th>
                     <!-- <th>E-Mail</th> -->
@@ -49,17 +49,17 @@ include('../includes/header.php');
                 <tbody>
                   <?php
                   $i = 1;
-                  $sql = "SELECT * FROM tblStudent";
+                  $sql = "SELECT * FROM tbltrainee";
                   $result = mysqli_query($conn, $sql);
                   if (mysqli_num_rows($result)) {
                     while ($row = mysqli_fetch_assoc($result)) {
                   ?>
                       <tr>
                         <td><?php echo $i ?></td>
-                        <!-- <td><?php echo $row['stu_id'] ?></td> -->
-                        <!-- <td><?php echo $row['roll'] ?></td> -->
+                        <!-- <td><?php echo $row['trainee_id'] ?></td> -->
+                        <!-- <td><?php echo $row['trainee_roll'] ?></td> -->
                         <td><img src="<?php echo $upload_dir . $row['image'] ?>" height="40"></td>
-                        <td><?php echo $row['name'] ?></td>
+                        <td><?php echo $row['trainee_name'] ?></td>
                         <td><?php echo $row['designation'] ?></td>
                         <td><?php echo $row['organization'] ?></td>
                         <!-- <td><?php echo $row['email'] ?></td> -->
@@ -68,9 +68,9 @@ include('../includes/header.php');
                       <td><?php echo $row['bg'] ?></td> -->
 
                         <td class="text-center">
-                          <a href="viewStudent.php?stu_id=<?php echo $row['stu_id'] ?>" class="btn btn-success" title="View Profile"><i class="fa fa-eye"></i></a>
-                          <a href="editStudent.php?stu_id=<?php echo $row['stu_id'] ?>" class="btn btn-info" title="Edit Profile"><i class="fa fa-user-edit"></i></a>
-                          <a href="index.php?delete=<?php echo $row['stu_id'] ?>" class="btn btn-danger" title="Delete Profile" onclick="return confirm('Are you sure to delete this record?')"><i class="fa fa-trash-alt"></i></a>
+                          <a href="viewTrainee.php?trainee_id=<?php echo $row['trainee_id'] ?>" class="btn btn-success" title="View Profile"><i class="fa fa-eye"></i></a>
+                          <a href="edittrainee.php?trainee_id=<?php echo $row['trainee_id'] ?>" class="btn btn-info" title="Edit Profile"><i class="fa fa-user-edit"></i></a>
+                          <a href="index.php?delete=<?php echo $row['trainee_id'] ?>" class="btn btn-danger" title="Delete Profile" onclick="return confirm('Are you sure to delete this record?')"><i class="fa fa-trash-alt"></i></a>
                         </td>
                       </tr>
                   <?php

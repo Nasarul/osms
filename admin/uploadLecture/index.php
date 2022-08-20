@@ -40,23 +40,34 @@ include_once('../includes/header.php')
               
               <tbody>
                 <?php
+
+
+
+
+
+// $result = mysqli_query($conn, $sql);
+// if (mysqli_num_rows($result)) {
+//   while ($row = mysqli_fetch_assoc($result)) {
+// 
+
                 $i=1;
-                $sql = "SELECT * FROM tbluploadlecture";
+                // $sql = "SELECT * FROM tbluploadlecture"; 
+                $sql = "SELECT subject_id, course_name, code, subject_name FROM tblsubject INNER JOIN tblcourse ON tblsubject.course_id = tblcourse.course_id";
                 $result = mysqli_query($conn, $sql);
                 if (mysqli_num_rows($result)) {
                   while ($row = mysqli_fetch_assoc($result)) {
                 ?>
                     <tr>
                     <td><?php echo $i ?></td>
-                    <td><?php echo $row['course_name'] ?></td>
-                      <td><?php echo $row['subject_name'] ?></td>
-                      <td><?php echo $row['facilitator_name'] ?></td>
+                    <td><?php echo $row['course_id'] ?></td>
+                      <td><?php echo $row['subject_id'] ?></td>
+                      <td><?php echo $row['facilitator_id'] ?></td>
                       <td><?php echo $row['lecture_name'] ?></td>
                       
                       <td class="text-center">
-                        <a href="viewLecture.php?id=<?php echo $row['id'] ?>" class="btn btn-success" title="View Lecture"><i class="fa fa-eye"></i></a>
-                        <a href="editLecture.php?id=<?php echo $row['id'] ?>" class="btn btn-info" title="Edit Lecture"><i class="fa fa-user-edit"></i></a>
-                        <a href="index.php?delete=<?php echo $row['id'] ?>" class="btn btn-danger" title="Delete Lecture" onclick="return confirm('Are you sure to delete this record?')"><i class="fa fa-trash-alt"></i></a>
+                        <a href="viewLecture.php?id=<?php echo $row['upload _lecture_id'] ?>" class="btn btn-success" title="View Lecture"><i class="fa fa-eye"></i></a>
+                        <a href="editLecture.php?id=<?php echo $row['upload _lecture_id'] ?>" class="btn btn-info" title="Edit Lecture"><i class="fa fa-user-edit"></i></a>
+                        <a href="index.php?delete=<?php echo $row['upload _lecture_id'] ?>" class="btn btn-danger" title="Delete Lecture" onclick="return confirm('Are you sure to delete this record?')"><i class="fa fa-trash-alt"></i></a>
                       </td>
                     </tr>
                 <?php

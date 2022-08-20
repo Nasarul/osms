@@ -18,7 +18,7 @@
     $msg = "";
 
     if (isset($_POST['submit'])) {
-        $name = mysqli_real_escape_string($conn, $_POST['name']);
+        $name = mysqli_real_escape_string($conn, $_POST['admin_user_name']);
         $email = mysqli_real_escape_string($conn, $_POST['email']);
         $password = mysqli_real_escape_string($conn, md5($_POST['password']));
         $confirm_password = mysqli_real_escape_string($conn, md5($_POST['confirm-password']));
@@ -28,7 +28,7 @@
             $msg = "<div class='alert alert-danger'>{$email} - This email address has been already exists.</div>";
         } else {
             if ($password === $confirm_password) {
-                $sql = "INSERT INTO admnusers (name, email, password, code) VALUES ('{$name}', '{$email}', '{$password}', '{$code}')";
+                $sql = "INSERT INTO admnusers (admin_user_name, email, password, code) VALUES ('{$name}', '{$email}', '{$password}', '{$code}')";
                 $result = mysqli_query($conn, $sql);
 
                 if ($result) {
@@ -116,7 +116,7 @@
                         <p>Enter your informations</p>
                         <?php echo $msg; ?>
                         <form action="" method="post">
-                            <input type="text" class="name" name="name" placeholder="Enter Your Name" value="<?php if (isset($_POST['submit'])) { echo $name; } ?>" required>
+                            <input type="text" class="name" name="admin_user_name" placeholder="Enter Your Name" value="<?php if (isset($_POST['submit'])) { echo $name; } ?>" required>
                             <input type="email" class="email" name="email" placeholder="Enter Your Email" value="<?php if (isset($_POST['submit'])) { echo $email; } ?>" required>
                             <input type="password" class="password" name="password" placeholder="Enter Your Password" required>
                             <input type="password" class="confirm-password" name="confirm-password" placeholder="Enter Your Confirm Password" required>

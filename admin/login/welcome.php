@@ -12,6 +12,6 @@
     if (mysqli_num_rows($query) > 0) {
         $row = mysqli_fetch_assoc($query);
 
-        echo "Welcome " . $row['name'] . " <a href='logout.php'>Logout</a>";
+        echo "Welcome " . $row['admin_user_name'] . " <a href='logout.php'>Logout</a>";
     }
 ?>

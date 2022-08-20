@@ -3,24 +3,25 @@ require_once('../config/dbcon.php');
 
 
 if (isset($_POST['Submit'])) {
-	$course_name = $_POST['course_name'];
-	$subject_name = $_POST['subject_name'];
-	$facilitator_name = $_POST['facilitator_name'];
-	$lecture_name = $_POST['name'];
+	$course_id = $_POST['course_id'];
+	$subject_id = $_POST['subject_id'];
+	$facilitator_id = $_POST['facilitator_id'];
+	$lecture_name = $_POST['lecture_name'];
+
 	
-	$lecture_file = $_FILES['lecture']['name'];
-	$lecture_type = $_FILES['lecture']['type'];
-	$lecture_size = $_FILES['lecture']['size'];
-	$lecture_temp_loc = $_FILES['lecture']['tmp_name'];
-	$lecture_store = "../uploads/lecture/" . $lecture;
+	$lecture_file = $_FILES['lecture_file']['name'];
+	$lecture_type = $_FILES['lecture_file']['type'];
+	$lecture_size = $_FILES['lecture_file']['size'];
+	$lecture_temp_loc = $_FILES['lecture_file']['tmp_name'];
+	$lecture_store = "../uploads/lecture/" . $lecture_file;
 	move_uploaded_file($lecture_temp_loc, $lecture_store);
 
 
-	if (empty($course_name)) {
+	if (empty($course_id)) {
 		$errorMsg = 'Please input course Name...';
-	} elseif (empty($subject_name)) {
+	} elseif (empty($subject_id)) {
 		$errorMsg = 'Please input subject name..';
-	} elseif (empty($facilitator_name)) {
+	} elseif (empty($facilitator_id)) {
 		$errorMsg = 'Please input facilitator name..';
 	} elseif (empty($lecture_name)) {
 		$errorMsg = 'Please input lecture name..';
@@ -29,8 +30,8 @@ if (isset($_POST['Submit'])) {
 	} else {
 
 		if (!isset($errorMsg)) {
-			$sql = "INSERT INTO tbluploadlecture(course_name, subject_name, facilitator_name, lecture_name, lecture)
-					values('" . $course_name . "','" . $subject_name . "', '" . $facilitator_name . "','" . $lecture_name . "', '" . $lecture_file . "')";
+			$sql = "INSERT INTO tbluploadlecture(course_id, subject_id, facilitator_id, lecture_name, lecture_file)
+					values('" . $course_id . "','" . $subject_id . "', '" . $facilitator_id . "','" . $lecture_name . "', '" . $lecture_file . "')";
 			$result = mysqli_query($conn, $sql);
 			if ($result) {
 				$successMsg = 'New record added successfully';

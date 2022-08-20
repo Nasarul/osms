@@ -1,13 +1,13 @@
 <?php
-include('saveCourse.php');
-include_once('../includes/header.php')
+include('saveSubject.php');
+include('../includes/header.php');
 ?>
 
 <body>
 
   <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
     <div class="container">
-      <a class="navbar-brand" href="index.php">Course Information</a>
+      <a class="navbar-brand" href="index.php">Subject Information</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -24,17 +24,26 @@ include_once('../includes/header.php')
     <div class="row justify-content-center">
       <div class="col-md-6">
         <div class="card">
-          <div class="card-header">Course Informations</div>
+          <div class="card-header">Subject Informations</div>
           <div class="card-body">
-            <form class="" action="saveCourse.php" method="post" enctype="multipart/form-data">
+            <form class="" action="saveSubject.php" method="post" enctype="multipart/form-data">
               <div class="form-group">
-                <label for="course_name">Course Name</label>
-                <input type="text" class="form-control" name="course_name" placeholder="Enter Course Name" value="">
+               
+              <div class="form-group">
+                <label for="name">Course Name</label>
+                <input type="text" class="form-control" name="course_name" placeholder="Enter Subjects code" value="">
               </div>
               <div class="form-group">
-                <label for="name">Course Duration</label>
-                <input type="text" class="form-control" name="duration" placeholder="Enter duration" value="">
-              </div>              
+                <label for="name">Subject Code</label>
+                <input type="text" class="form-control" name="code" placeholder="Enter Subjects code" value="">
+              </div>
+              <label for="name">Subject Name</label>
+                <input type="text" class="form-control" name="subject_name" placeholder="Enter Subjects name" value="">
+              </div>
+              <label for="name">Lecture</label>
+                <input type="file" class="form-control" name="lecture" placeholder="Enter lecture" value="">
+              </div>
+
               <div class="form-group">
                 <button type="submit" name="Submit" class="btn btn-primary waves">Submit</button>
               </div>

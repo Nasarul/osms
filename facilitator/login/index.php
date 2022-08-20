@@ -9,8 +9,8 @@
     $msg = "";
 
     if (isset($_GET['verification'])) {
-        if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM teausers WHERE code='{$_GET['verification']}'")) > 0) {
-            $query = mysqli_query($conn, "UPDATE teausers SET code='' WHERE code='{$_GET['verification']}'");
+        if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM facilitatorusers WHERE code='{$_GET['verification']}'")) > 0) {
+            $query = mysqli_query($conn, "UPDATE facilitatorusers SET code='' WHERE code='{$_GET['verification']}'");
             
             if ($query) {
                 $msg = "<div class='alert alert-success'>Account verification has been successfully completed.</div>";
@@ -24,7 +24,7 @@
         $email = mysqli_real_escape_string($conn, $_POST['email']);
         $password = mysqli_real_escape_string($conn, md5($_POST['password']));
 
-        $sql = "SELECT * FROM teausers WHERE email='{$email}' AND password='{$password}'";
+        $sql = "SELECT * FROM facilitatorusers WHERE email='{$email}' AND password='{$password}'";
         $result = mysqli_query($conn, $sql);
 
         if (mysqli_num_rows($result) === 1) {

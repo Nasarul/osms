@@ -1,20 +1,24 @@
 <?php
   require_once('../config/dbcon.php');
-  $upload_dir = '../uploads/facilitator/';
+  $upload_dir = '../uploads/trainee/';
 
   if (isset($_POST['Submit'])) {
-    $name = $_POST['name'];
+   	$trainee_roll = $_POST['trainee_roll'];
+	$trainee_name = $_POST['trainee_name'];
 	$designation = $_POST['designation'];
 	$organization = $_POST['organization'];
-    $email = $_POST['email'];
+	$email = $_POST['email'];
 	$mobile = $_POST['mobile'];
-    
+	$dob = date('Y-m-d', strtotime($_POST['dob'])); 
+	$bg = $_POST['bg']; 
     $imgName = $_FILES['image']['name'];
 		$imgTmp = $_FILES['image']['tmp_name'];
 		$imgSize = $_FILES['image']['size'];
 
-    if(empty($name)){
-			$errorMsg = 'Please input name..';
+    if(empty($trainee_roll)){
+			$errorMsg = 'Please input trainees rool..';
+		}elseif(empty($trainee_name)){
+			$errorMsg = 'Please input trainee name..';	
 		}elseif(empty($designation)){
 			$errorMsg = 'Please input designation..';
 		}elseif(empty($organization)){
@@ -23,6 +27,10 @@
 			$errorMsg = 'Please input email..';
 		}elseif(empty($mobile)){
 			$errorMsg = 'Please input mobile..';
+		}elseif(empty($dob)){
+			$errorMsg = 'Please input date of birth..';
+		}elseif(empty($bg)){
+			$errorMsg = 'Please input blood group..';
 		}else{
 
 			$imgExt = strtolower(pathinfo($imgName, PATHINFO_EXTENSION));
@@ -45,8 +53,8 @@
 
 
 		if(!isset($errorMsg)){
-			$sql = "INSERT INTO tblteacher(name, designation, organization, email, mobile, image)
-					values('".$name."', '".$designation."', '".$organization."', '".$email."', '".$mobile."', '".$userPic."')";
+			$sql = "INSERT INTO tbltrainee(trainee_roll, trainee_name, designation, organization, email, mobile, dob, bg, image)
+					values('".$trainee_roll."','".$trainee_name."', '".$designation."', '".$organization."', '".$email."', '".$mobile."', '".$dob."', '".$bg."','".$userPic."')";
 			$result = mysqli_query($conn, $sql);
 			if($result){
 				$successMsg = 'New record added successfully';

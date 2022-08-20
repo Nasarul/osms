@@ -9,8 +9,8 @@
     $msg = "";
 
     if (isset($_GET['verification'])) {
-        if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM stuusers WHERE code='{$_GET['verification']}'")) > 0) {
-            $query = mysqli_query($conn, "UPDATE stuusers SET code='' WHERE code='{$_GET['verification']}'");
+        if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM traineeusers WHERE code='{$_GET['verification']}'")) > 0) {
+            $query = mysqli_query($conn, "UPDATE traineeusers SET code='' WHERE code='{$_GET['verification']}'");
             
             if ($query) {
                 $msg = "<div class='alert alert-success'>Account verification has been successfully completed.</div>";
@@ -24,7 +24,7 @@
         $email = mysqli_real_escape_string($conn, $_POST['email']);
         $password = mysqli_real_escape_string($conn, md5($_POST['password']));
 
-        $sql = "SELECT * FROM stuusers WHERE email='{$email}' AND password='{$password}'";
+        $sql = "SELECT * FROM traineeusers WHERE email='{$email}' AND password='{$password}'";
         $result = mysqli_query($conn, $sql);
 
         if (mysqli_num_rows($result) === 1) {
@@ -46,7 +46,7 @@
 <html lang="zxx">
 
 <head>
-    <title>Login Form - OLMS</title>
+    <title>Login Form - OSMS</title>
     <!-- Meta tag Keywords -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8" />
