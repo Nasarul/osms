@@ -1,6 +1,6 @@
 <?php
 include('deleteLecture.php');
-include_once('../includes/header.php')
+include('../includes/header.php');
 ?>
 
 <body>
@@ -32,46 +32,59 @@ include_once('../includes/header.php')
                   <th style="text-align:center">SL.</th>
                   <th style="text-align:center">Course Name</th>
                   <th style="text-align:center">Subject Name</th>
-                  <th style="text-align:center">Facilitator Name</th> 
-                  <th style="text-align:center">Lecture Name</th>                
+                  <th style="text-align:center">Facilitator Name</th>
+                  <th style="text-align:center">Lecture Name</th>
                   <th style="text-align:center">Actions</th>
                 </tr>
               </thead>
-              
+
               <tbody>
                 <?php
 
+                // $result = mysqli_query($conn, $sql);
+                // if (mysqli_num_rows($result)) {
+                //   while ($row = mysqli_fetch_assoc($result)) {
 
 
-
-
-// $result = mysqli_query($conn, $sql);
-// if (mysqli_num_rows($result)) {
-//   while ($row = mysqli_fetch_assoc($result)) {
-// 
-
-                $i=1;
+                  // $i = 1;
                 // $sql = "SELECT * FROM tbluploadlecture"; 
-                $sql = "SELECT subject_id, course_name, code, subject_name FROM tblsubject INNER JOIN tblcourse ON tblsubject.course_id = tblcourse.course_id";
+                $sql = "SELECT * FROM ((tbluploadlecture INNER JOIN tblcourse ON tbluploadlecture.course_id = tblcourse.course_id) INNER JOIN tblsubject ON tbluploadlecture.subject_id = tblsubject.subject_id);";
+                echo $sql;
+                die();
+
                 $result = mysqli_query($conn, $sql);
                 if (mysqli_num_rows($result)) {
                   while ($row = mysqli_fetch_assoc($result)) {
                 ?>
                     <tr>
-                    <td><?php echo $i ?></td>
-                    <td><?php echo $row['course_id'] ?></td>
-                      <td><?php echo $row['subject_id'] ?></td>
-                      <td><?php echo $row['facilitator_id'] ?></td>
+                      <td><?php echo $i ?></td>
+                      <td><?php echo $row['course_name'] ?></td>
+                      <td><?php echo $row['subject_name'] ?></td>
+                      <td><?php
+
+                          //for facilitator name print//
+                          $facilitator_id = $row['facilitator_id'];
+                          $sql2 = "select facilitator_name from tblfacilitator where facilitator_id = {$facilitator_id}";
+                          $result2 = mysqli_query($conn, $sql2);
+                          while ($row2 = mysqli_fetch_assoc($result2)) {
+                            print_r($row2["facilitator_name"]);
+                          }
+
+
+                          //  echo $row['facilitator_id'] 
+                          ?></td>
+
+
                       <td><?php echo $row['lecture_name'] ?></td>
-                      
+
                       <td class="text-center">
-                        <a href="viewLecture.php?id=<?php echo $row['upload _lecture_id'] ?>" class="btn btn-success" title="View Lecture"><i class="fa fa-eye"></i></a>
-                        <a href="editLecture.php?id=<?php echo $row['upload _lecture_id'] ?>" class="btn btn-info" title="Edit Lecture"><i class="fa fa-user-edit"></i></a>
-                        <a href="index.php?delete=<?php echo $row['upload _lecture_id'] ?>" class="btn btn-danger" title="Delete Lecture" onclick="return confirm('Are you sure to delete this record?')"><i class="fa fa-trash-alt"></i></a>
+                        <a href="viewLecture.php?id=<?php echo $row['upload_lecture_id'] ?>" class="btn btn-success" title="View Lecture"><i class="fa fa-eye"></i></a>
+                        <a href="editLecture.php?id=<?php echo $row['upload_lecture_id'] ?>" class="btn btn-info" title="Edit Lecture"><i class="fa fa-user-edit"></i></a>
+                        <a href="index.php?delete=<?php echo $row['upload_lecture_id'] ?>" class="btn btn-danger" title="Delete Lecture" onclick="return confirm('Are you sure to delete this record?')"><i class="fa fa-trash-alt"></i></a>
                       </td>
                     </tr>
                 <?php
-                $i++;
+                    // $i++;
                   }
                 }
                 ?>

@@ -28,30 +28,36 @@ include_once('../includes/header.php')
           <div class="card-body">
             <form class="" action="saveSubject.php" method="post" enctype="multipart/form-data">
               <div class="form-group">
-               
-              <div class="form-group">
-                <label for="name">Course Name</label>
-                <input type="text" class="form-control" name="course_name" placeholder="Enter Subjects code" value="">
-              </div>
-              <div class="form-group">
-                <label for="name">Subject Code</label>
-                <input type="text" class="form-control" name="code" placeholder="Enter Subjects code" value="">
-              </div>
-              <label for="name">Subject Name</label>
-                <input type="text" class="form-control" name="subject_name" placeholder="Enter Subjects name" value="">
-              </div>
-              <label for="name">Lecture</label>
-                <input type="file" class="form-control" name="lecture" placeholder="Enter lecture" value="">
+
+                <div class="form-group">
+                  <label for="name">Course ID</label>
+                  <input type="text" class="form-control" name="course_id" placeholder="Enter course id" value="">
+                </div>
+
+                <div class="form-group">
+                  <label for="name">Subject Code</label>
+                  <input type="text" class="form-control" name="code" placeholder="Enter Subjects code" value="">
+                </div>
+
+                <div class="form-group">
+                  <label for="name">Subject Name</label>
+                  <input type="text" class="form-control" name="subject_name" placeholder="Enter Subjects name" value="">
+                </div>
+
+                <div class="form-group">
+                  <label for="name">Lecture</label>
+                  <input type="file" class="form-control" name="lecture" placeholder="Enter lecture" value="">
               </div>
 
-              <div class="form-group">
-                <button type="submit" name="Submit" class="btn btn-primary waves">Submit</button>
-              </div>
-            </form>
           </div>
+          <div class="form-group">
+            <button type="submit" name="Submit" class="btn btn-primary waves">Submit</button>
+          </div>
+          </form>
         </div>
       </div>
     </div>
+  </div>
   </div>
 
   <script src="js/bootstrap.min.js" charset="utf-8"></script>

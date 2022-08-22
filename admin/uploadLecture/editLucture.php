@@ -2,9 +2,9 @@
 require_once('../config/dbcon.php');
 $upload_dir = '../uploads/lecture/';
 
-if (isset($_GET['id'])) {
-  $id = $_GET['id'];
-  $sql = "SELECT * FROM tbluploadlecture WHERE id =" . $id;
+if (isset($_GET['upload _lecture_id'])) {
+  $id = $_GET['upload _lecture_id'];
+  $sql = "SELECT * FROM tbluploadlecture WHERE upload _lecture_id =" . $id;
   $result = mysqli_query($conn, $sql);
   if (mysqli_num_rows($result) > 0) {
     $row = mysqli_fetch_assoc($result);
@@ -14,9 +14,9 @@ if (isset($_GET['id'])) {
 }
 
 if (isset($_POST['Submit'])) {
-  $course_name = $_POST['course_name'];
-  $subject_name = $_POST['subject_name'];
-  $facilitator_name = $_POST['facilitator_name'];
+  $course_id = $_POST['course_id'];
+  $subject_id = $_POST['subject_id'];
+  $facilitator_id = $_POST['facilitator_id'];
   $lecture_name = $_POST['lecture_name'];
 
   $lecture_file = $_FILES['lecture']['name'];
@@ -57,11 +57,11 @@ if (isset($_POST['Submit'])) {
 
   if (!isset($errorMsg)) {
     $sql = "UPDATE tbluploadlecture
-									SET course_name = '" . $Course_name . "',
-                  subject_name = '" . $subject_name . "',
-                  facilitator_name = '" . $facilitator_name . "',
+									SET course_id = '" . $course_id . "',
+                  subject_id = '" . $subject_id . "',
+                  facilitator_id = '" . $facilitator_id. "',
                   lecture_name = '" . $lecture_name . "'
-				WHERE	id=" . $id;
+				WHERE	upload _lecture_id=" . $id;
     $result = mysqli_query($conn, $sql);
     if ($result) {
       $successMsg = 'New record updated successfully';
@@ -98,24 +98,24 @@ include_once('../includes/header.php')
 
             <div class="form-group">
               <label for="name">Course Name</label>
-              <input type="text" class="form-control" name="course_name" placeholder="Enter Course Name..." value="<?php echo $row['course_name']; ?>">
+              <input type="text" class="form-control" name="course_id" placeholder="Enter Course Name..." value="<?php echo $row['course_name']; ?>">
             </div>
 
             <div class="form-group">
               <label for="name">Subject Name</label>
-              <input type="text" class="form-control" name="subject_name" placeholder="Enter Subjects Name..." value="<?php echo $row['subject_name']; ?>">
+              <input type="text" class="form-control" name="subject_id" placeholder="Enter Subjects Name..." value="<?php echo $row['subject_name']; ?>">
             </div>
             <div class="form-group">
               <label for="name">facilitator Name</label>
-              <input type="text" class="form-control" name="code" placeholder="Enter Facilitator Name" value="<?php echo $row['facilitator_name']; ?>">
+              <input type="text" class="form-control" name="facilitator_id" placeholder="Enter Facilitator Name" value="<?php echo $row['facilitator_name']; ?>">
             </div>
             <div class="form-group">
               <label for="name">Lecture Name</label>
-              <input type="text" class="form-control" name="code" placeholder="Enter Lecture Name" value="<?php echo $row['lecture_name']; ?>">
+              <input type="text" class="form-control" name="lecture_name" placeholder="Enter Lecture Name" value="<?php echo $row['lecture_name']; ?>">
             </div>
             <div class="form-group">
               <label for="name">Lecture File</label>
-              <input type="file" class="form-control" name="lecture" placeholder="Upload Lecture File" value="<?php echo $upload_dir . $row['lecture'] ?>">
+              <input type="file" class="form-control" name="lecture_file" placeholder="Upload Lecture File" value="<?php echo $upload_dir . $row['lecture'] ?>">
             </div>
 
             <div class="form-group">

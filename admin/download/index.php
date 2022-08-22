@@ -21,12 +21,12 @@ include('../includes/header.php');
 		<div id="content">
 			<form method="">
 				<label>Course : </label>
-				<select id="course" class="form-select" aria-label="seclect cource">
+				<select id="course" class="form-select" aria-label="Default select example">
 					<option value="" selected>Select Course</option>					
 				</select>
 				<br><br>
 				<label>Subject : </label>
-				<select id="subject" class="form-select" aria-label="seclect subject">>
+				<select id="subject" class="form-select" aria-label="Default select example">>
 					<option value="" selected>Select subject</option>
 				</select>
 <br>

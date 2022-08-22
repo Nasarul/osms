@@ -44,7 +44,7 @@ include('../config/dbcon.php');
                       $selectedCourse[] = $row['course_name'];
                     }
                   }
-                  echo "<select type='text' class='form-control' name='course_name' placeholder='Enter Facilitator name' value=''>";
+                  echo "<select type='text' class='form-control' name='course_id' placeholder='Enter Facilitator name' value=''>";
                   foreach ($selectedCourse as $optionName) {
                     echo "<option value=" . $optionName . ">" . $optionName . "</option>";
                   }
@@ -66,7 +66,7 @@ include('../config/dbcon.php');
                       $selectedSubject[] = $row['subject_name'];
                     }
                   }
-                  echo "<select type='text' class='form-control' name='subject_name' placeholder='Enter Facilitator name' value=''>";
+                  echo "<select type='text' class='form-control' name='subject_id' placeholder='Enter Facilitator name' value=''>";
                   foreach ($selectedSubject as $optionName) {
                     echo "<option value=" . $optionName . ">" . $optionName . "</option>";
                   }
@@ -87,7 +87,7 @@ include('../config/dbcon.php');
                       $selectedFacilitator[] = $row['facilitator_name'];
                     }
                   }
-                  echo "<select type='text' class='form-control' name='facilitator_name' placeholder='Enter Facilitator name' value=''>";
+                  echo "<select type='text' class='form-control' name='facilitator_id' placeholder='Enter Facilitator name' value=''>";
                   foreach ($selectedFacilitator as $optionName) {
                     echo "<option value=" . $optionName . ">" . $optionName . "</option>";
                   }

@@ -14,6 +14,7 @@ if (isset($_GET['subject_id'])) {
 }
 
 ?>
+
 <?php
 include('../includes/header.php')
 ?>
@@ -34,8 +35,10 @@ include('../includes/header.php')
             <div class="col-md">
 
               <h5 class="form-control"><i class="fa-solid fa-book"></i>
+
+
+              
                 <span><?php echo $row['course_id'] ?></span>
-                
                 <!-- extra code will be writhe for course name -->
                 
                 </i>

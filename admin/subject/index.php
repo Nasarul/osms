@@ -1,6 +1,6 @@
 <?php
 include('deleteSubject.php');
-include_once('../includes/header.php')
+include('../includes/header.php');
 ?>
 
 <body>
@@ -26,7 +26,7 @@ include_once('../includes/header.php')
       <div class="col-md-100">
         <div class="card">
           <div class="card-body">
-            <table id="example" class="table table-striped table-bordered" style="width:100%">
+            <table id="example" class="table table-striped table-bordered" style="width:110%">
               <thead>
                 <tr>
                   <th style="text-align:center">SL.</th>
@@ -54,8 +54,6 @@ include_once('../includes/header.php')
                       <td><?php echo $row['code'] ?></td>
                       <td><?php echo $row['subject_name'] ?></td>
                       <!-- <td><?php echo $row['lecture'] ?></td> -->
-
-
 
                       <td class="text-center">
                         <a href="viewSubject.php?subject_id=<?php echo $row['subject_id'] ?>" class="btn btn-success" title="View Subject"><i class="fa fa-eye"></i></a>

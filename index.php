@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/210c136c9c.js" crossorigin="anonymous"></script>
-    <title>NAPD OSMS</title>
+    <title>OSMS</title>
 
     <style>
         a {
@@ -88,7 +88,7 @@
 
 <body>
     <img src="admin/assets/dist/img/napdback.png" alt="">
-    <h2>NAPD Online Session Management System</h2>
+    <h2>Online Session Management System for NAPD</h2>
     <h5>(Select your options)</h5>
 
     <div class="box-wrap">

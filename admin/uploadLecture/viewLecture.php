@@ -3,8 +3,12 @@ require_once('../config/dbcon.php');
 $upload_dir = '../uploads/lecture/';
 
 if (isset($_GET['id'])) {
-  $sub_id = $_GET['id'];
-  $sql = "SELECT * FROM tbluploadlecture WHERE id=" . $id;
+  $id = $_GET['id'];
+  // $sql = "SELECT * FROM tbluploadlecture WHERE upload_lecture_id =" . $id;
+
+  $sql = "SELECT * FROM ((tbluploadlecture INNER JOIN tblcourse ON tbluploadlecture.course_id = tblcourse.course_id) INNER JOIN tblsubject ON tbluploadlecture.subject_id = tblsubject.subject_id) where upload_lecture_id = {$id};";
+
+
   $result = mysqli_query($conn, $sql);
   if (mysqli_num_rows($result) > 0) {
     $row = mysqli_fetch_assoc($result);
@@ -33,7 +37,7 @@ include('../includes/header.php')
           <div class="row">
             <div class="col-md">
 
-            <h5 class="form-control"><i class="fa-solid fa-book"></i>
+              <h5 class="form-control"><i class="fa-solid fa-book"></i>
                 <span><?php echo $row['course_name'] ?></span>
                 </i>
               </h5>
@@ -42,18 +46,26 @@ include('../includes/header.php')
                 </i>
               </h5>
               <h5 class="form-control"><i class="fa-solid fa-book"></i>
-                <span><?php echo $row['facilitator_name'] ?></span>
+                <span><?php echo $row['facilitator_id'] ?></span>
                 </i>
               </h5>
               <h5 class="form-control"><i class="fa-solid fa-book"></i>
                 <span><?php echo $row['lecture_name'] ?></span>
                 </i>
               </h5>
-                
-              <h5 class="form-control"><i class="fa-solid fa-tags"></i>
+
+              <!-- <h5 class="form-control"><i class="fa-solid fa-tags"></i>
               <file src="<?php echo $upload_dir . $row['lecture_file'] ?>" height="500">
                 </i>
-              </h5>
+              </h5> -->
+
+              <!-- <a href= "../uploads/lecture <?php echo $row['lecture_file'];
+                                                // echo $row['lecture_file'];
+                                                ?>" download>file </a> -->
+
+              <a href="../uploads/lecture/<?php $row['lecture_file'] ?>" download>
+                <img src="../uploads/lecture/<?php $row['lecture_file'] ?>" alt="W3Schools" width="104" height="142">;
+              </a>
 
 
               <a class="btn btn-outline-danger" href="index.php"><i class="fa fa-sign-out-alt"></i><span>Back to Home</span></a>

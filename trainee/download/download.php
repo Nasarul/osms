@@ -1,53 +1,44 @@
 <?php
 include("../config/dbcon.php");
 
-if(isset($_GET['sub_id'])){
-    $id = $_GET['sub_id'];
+if(isset($_GET['subject_id'])){
+    $id = $_GET['subject_id'];
 
-    $state = $bd->prepare("select * from tblsubject where sub_id=?");
+    $state = $bd->prepare("select * from tblsubject where subject_id=?");
     $stat->bindParam(1, $id);
     $stat->execute();
     $data = $stat->fetch();
 
     $filepath = '../../admin/uploads/lecture/' .$data['filename'];
 
-    if(file_exists($file)){
-        header('Content-Description: '.$data['description']);
-        header('Content-Type: '.$data['type']);
-        header('Content-Disposition: '.$data['disposition'].'; filename="'.basename($file).'"');
-        header('Expires: '.$data['expires']);
-        header('Cache-Control: '.$data['cache']);
-        header('Pragma: '.$data['pragma']);
-        header('Content-Length: '.filesize($file));
-        readfile($file);
-        exit;
-    }
+   
 
        // Process download
-//        if(file_exists($filepath)) {
-//         header('Content-Description: File Transfer');
-//         header('Content-Type: application/octet-stream');
-//         header('Content-Disposition: attachment; filename="'.basename($filepath).'"');
-//         header('Expires: 0');
-//         header('Cache-Control: must-revalidate');
-//         header('Pragma: public');
-//         header('Content-Length: ' . filesize($filepath));
-//         flush(); // Flush system output buffer
-//         readfile($filepath);
-//         die();
-//     } else {
-//         http_response_code(404);
-//         die();
-//     }
-// } else {
-//     die("Invalid file name!");
-// }
+       if(file_exists($filepath)) {
+        header('Content-Description: File Transfer');
+        header('Content-Type: application/octet-stream');
+        header('Content-Disposition: attachment; filename="'.basename($filepath).'"');
+        header('Expires: 0');
+        header('Cache-Control: must-revalidate');
+        header('Pragma: public');
+        header('Content-Length: ' . filesize($filepath));
+        flush(); // Flush system output buffer
+        readfile($filepath);
+        die();
+    } else {
+        http_response_code(404);
+        die();
+    }
+} else {
+    die("Invalid file name!");
+}
 
 ?>
 
 
 <!-- Extra code for test -->
-<!-- <?php
+
+<?php
 include_once('../includes/header.php')
 ?>
 
@@ -66,11 +57,11 @@ include_once('../includes/header.php')
           <div class="row">
            
               <h5 class="form-control"><i class="fa-solid fa-user"></i>
-                <span><?php echo $row['course_name'] ?></span>
+                <span><?php echo $row['subject_id'] ?></span>
                 </i>
               </h5>
               <h5 class="form-control"><i class="fa-solid fa-tags"></i>
-                <span><?php echo $row['name'] ?></span>
+                <span><?php echo $row['subject_name'] ?></span>
                 </i>
               </h5>
            
@@ -94,4 +85,4 @@ include_once('../includes/header.php')
   </script>
 </body>
 
-</html> -->
+</html>

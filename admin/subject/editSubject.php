@@ -14,7 +14,7 @@ if (isset($_GET['subject_id'])) {
 }
 
 if (isset($_POST['Submit'])) {
-  $course = $_POST['course_name'];
+  $course = $_POST['course_id'];
   $subject_name = $_POST['subject_name'];
   $code = $_POST['code'];
 
@@ -57,7 +57,7 @@ if (isset($_POST['Submit'])) {
   if (!isset($errorMsg)) {
     $sql = "UPDATE tblsubject
 									SET subject_name = '" . $subject_name . "',
-                  course_name = '" . $course . "',
+                  course_id = '" . $course . "',                  
                   code = '" . $code . "',
                   lecture = '" . $lecture . "'
 				WHERE	subject_id=" . $subject_id;
@@ -96,13 +96,13 @@ include_once('../includes/header.php')
           <form class="" action="" method="post" enctype="multipart/form-data">
 
             <div class="form-group">
-              <label for="name">Course Name</label>
-              <input type="text" class="form-control" name="course_name" placeholder="Enter Subjects Name..." value="<?php echo $row['course_name']; ?>">
+              <label for="name">Course ID</label>
+              <input type="text" class="form-control" name="course_id" placeholder="Enter Course ID..." value="<?php echo $row['course_id']; ?>">
             </div>
 
             <div class="form-group">
               <label for="name">Subject Name</label>
-              <input type="text" class="form-control" name="subject_name" placeholder="Enter Subjects Name..." value="<?php echo $row['name']; ?>">
+              <input type="text" class="form-control" name="subject_name" placeholder="Enter Subjects Name..." value="<?php echo $row['subject_name']; ?>">
             </div>
             <div class="form-group">
               <label for="name">Subject Code</label>
@@ -111,7 +111,7 @@ include_once('../includes/header.php')
 
             <div class="form-group">
               <label for="name">Lecture</label>
-              <input type="file" class="form-control" name="lecture" placeholder="Enter Subjects code..." value="<?php echo $upload_dir . $row['lecture'] ?>">
+              <input type="file" class="form-control" name="lecture" placeholder="Attache lecture file..." value="<?php echo $upload_dir . $row['lecture'] ?>">
             </div>
 
             <div class="form-group">
