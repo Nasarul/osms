@@ -115,7 +115,7 @@ include_once('../includes/header.php')
             </div>
             <div class="form-group">
               <label for="name">Lecture File</label>
-              <input type="file" class="form-control" name="lecture_file" placeholder="Upload Lecture File" value="<?php echo $upload_dir . $row['lecture'] ?>">
+              <input type="file" class="form-control" name="lecture_file" placeholder="Upload Lecture File" value="<?php echo $upload_dir . $row['lecture_file'] ?>">
             </div>
 
             <div class="form-group">

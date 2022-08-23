@@ -41,17 +41,8 @@ include('../includes/header.php');
               <tbody>
                 <?php
 
-                // $result = mysqli_query($conn, $sql);
-                // if (mysqli_num_rows($result)) {
-                //   while ($row = mysqli_fetch_assoc($result)) {
-
-
-                  // $i = 1;
-                // $sql = "SELECT * FROM tbluploadlecture"; 
-                $sql = "SELECT * FROM ((tbluploadlecture INNER JOIN tblcourse ON tbluploadlecture.course_id = tblcourse.course_id) INNER JOIN tblsubject ON tbluploadlecture.subject_id = tblsubject.subject_id);";
-                echo $sql;
-                die();
-
+                $i = 1;
+                $sql = "SELECT tbluploadlecture.lecture_name, tblsubject.subject_name, tblcourse.course_name, tblfacilitator.facilitator_name, tbluploadlecture.upload_lecture_id FROM tbluploadlecture INNER JOIN tblcourse ON tbluploadlecture.course_id = tblcourse.course_id INNER JOIN tblsubject ON tblcourse.course_id = tblsubject.course_id INNER JOIN tblfacilitator ON tblsubject.course_id = tblfacilitator.course_id;";
                 $result = mysqli_query($conn, $sql);
                 if (mysqli_num_rows($result)) {
                   while ($row = mysqli_fetch_assoc($result)) {
@@ -60,21 +51,7 @@ include('../includes/header.php');
                       <td><?php echo $i ?></td>
                       <td><?php echo $row['course_name'] ?></td>
                       <td><?php echo $row['subject_name'] ?></td>
-                      <td><?php
-
-                          //for facilitator name print//
-                          $facilitator_id = $row['facilitator_id'];
-                          $sql2 = "select facilitator_name from tblfacilitator where facilitator_id = {$facilitator_id}";
-                          $result2 = mysqli_query($conn, $sql2);
-                          while ($row2 = mysqli_fetch_assoc($result2)) {
-                            print_r($row2["facilitator_name"]);
-                          }
-
-
-                          //  echo $row['facilitator_id'] 
-                          ?></td>
-
-
+                      <td><?php echo $row['facilitator_name'] ?></td>
                       <td><?php echo $row['lecture_name'] ?></td>
 
                       <td class="text-center">
@@ -84,7 +61,7 @@ include('../includes/header.php');
                       </td>
                     </tr>
                 <?php
-                    // $i++;
+                    $i++;
                   }
                 }
                 ?>
