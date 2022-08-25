@@ -19,7 +19,27 @@ include_once('../includes/header.php')
     </div>
   </nav>
 
-  <div class="container">
+
+<!-- extra code for NAPD's auto number -->
+
+<!-- <?php
+        $query2 = "select * from tbltrainee order by trainee_roll desc limit 1";
+        $result2 = mysqli_query($conn,$query2);
+        $row = mysqli_fetch_array($result2);
+        $last_id = $row['trainee_roll'];
+        if ($last_id == "")
+        {
+            $trainee_roll = "2021PGD4ICT01101";
+        }
+        else
+        {
+            $trainee_roll = substr($last_id, 3);
+            $trainee_roll = intval($trainee_roll);
+            $trainee_roll = "2021PGD4ICT01101" . ($trainee_roll + 1);
+        }
+    ?> -->
+
+<div class="container">
     <div class="row justify-content-center">
       <div class="col-md-6">
         <div class="card">
@@ -28,7 +48,7 @@ include_once('../includes/header.php')
             <form class="" action="saveTrainee.php" method="post" enctype="multipart/form-data">
               <div class="form-group">
                 <label for="name">Trainee's Roll</label>
-                <input type="text" class="form-control" name="trainee_roll" placeholder="Enter trainee's roll number" value="">
+                <input type="text" class="form-control" name="trainee_roll" id="roll" style="color: red" placeholder="Enter trainee's roll number" value=" <?php echo $trainee_roll; ?>" readonly>
               </div>
               <div class="form-group">
                 <label for="name">Trainee's Name</label>

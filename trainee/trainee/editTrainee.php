@@ -101,7 +101,7 @@ include_once('../includes/header.php')
             <form class="" action="" method="post" enctype="multipart/form-data">
               <div class="form-group">
                 <label for="name">Trainee's roll</label>
-                <input type="text" class="form-control" name="trainee_roll" placeholder="Enter roll..." value="<?php echo $row['trainee_roll']; ?>">
+                <input type="text" class="form-control" name="trainee_roll" placeholder="Enter roll..." value="<?php echo $row['trainee_roll']; ?>" readonly>
               </div>
               <div class="form-group">
                 <label for="name">Trainee's Name</label>

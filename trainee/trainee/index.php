@@ -55,6 +55,8 @@ $upload_dir = '../.././admin/uploads/trainee/';
                   if (mysqli_num_rows($result)) {
                     while ($row = mysqli_fetch_assoc($result)) {
                   ?>
+
+
                       <tr>
                         <td><?php echo $i ?></td>
                         <!-- <td><?php echo $row['trainee_id'] ?></td> -->
