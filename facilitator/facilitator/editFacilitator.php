@@ -1,10 +1,10 @@
 <?php
-require_once('../config/dbcon.php');
+include('../config/dbcon.php');
 $upload_dir = '../uploads/facilitator/';
 
-if (isset($_GET['tech_id'])) {
-  $tech_id = $_GET['tech_id'];
-  $sql = "SELECT * FROM tblteacher WHERE tech_id =" . $tech_id;
+if (isset($_GET['facilitator_id'])) {
+  $facilitator_id = $_GET['facilitator_id'];
+  $sql = "SELECT * FROM tblfacilitator WHERE facilitator_id =" . $facilitator_id;
   $result = mysqli_query($conn, $sql);
   if (mysqli_num_rows($result) > 0) {
     $row = mysqli_fetch_assoc($result);
@@ -14,7 +14,7 @@ if (isset($_GET['tech_id'])) {
 }
 
 if (isset($_POST['Submit'])) {
-  $name = $_POST['name'];
+  $facilitator_name = $_POST['facilitator_name'];
   $designation = $_POST['designation'];
   $organization = $_POST['organization'];
   $email = $_POST['email'];
@@ -50,14 +50,14 @@ if (isset($_POST['Submit'])) {
   }
 
   if (!isset($errorMsg)) {
-    $sql = "UPDATE tblteacher
-									SET name = '" . $name . "',
+    $sql = "UPDATE tblfacilitator
+									SET facilitator_name = '" . $facilitator_name . "',
                   designation = '" . $designation . "',
                   organization = '" . $organization . "',
                   email = '" . $email . "',
                   mobile = '" . $mobile . "',	                   
 									image = '" . $userPic . "'
-				WHERE	tech_id=" . $tech_id;
+				WHERE	facilitator_id=" . $facilitator_id;
     $result = mysqli_query($conn, $sql);
     if ($result) {
       $successMsg = 'New record updated successfully';
@@ -93,7 +93,7 @@ include_once('../includes/header.php')
             <form class="" action="" method="post" enctype="multipart/form-data">
               <div class="form-group">
                 <label for="name">Facilitator's Name</label>
-                <input type="text" class="form-control" name="name" placeholder="Enter Name..." value="<?php echo $row['name']; ?>">
+                <input type="text" class="form-control" name="facilitator_name" placeholder="Enter Name..." value="<?php echo $row['facilitator_name']; ?>">
               </div>
               <div class="form-group">
                 <label for="name">Facilitator's Designation</label>
@@ -120,6 +120,7 @@ include_once('../includes/header.php')
               </div>
               <div class="form-group">
                 <button type="submit" name="Submit" class="btn btn-primary waves">Save</button>
+                <a class="btn btn-primary waves" href="index.php" role="button">Cancel</a>
               </div>
             </form>
           </div>

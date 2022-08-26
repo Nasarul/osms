@@ -3,7 +3,7 @@
   $upload_dir = '../uploads/facilitator/';
 
   if (isset($_POST['Submit'])) {
-    $name = $_POST['name'];
+    $facilitator_name = $_POST['facilitator_name'];
 	$designation = $_POST['designation'];
 	$organization = $_POST['organization'];
     $email = $_POST['email'];
@@ -13,8 +13,8 @@
 		$imgTmp = $_FILES['image']['tmp_name'];
 		$imgSize = $_FILES['image']['size'];
 
-    if(empty($name)){
-			$errorMsg = 'Please input name..';
+    if(empty($facilitator_name)){
+			$errorMsg = 'Please input facilitator name..';
 		}elseif(empty($designation)){
 			$errorMsg = 'Please input designation..';
 		}elseif(empty($organization)){
@@ -45,8 +45,8 @@
 
 
 		if(!isset($errorMsg)){
-			$sql = "INSERT INTO tblteacher(name, designation, organization, email, mobile, image)
-					values('".$name."', '".$designation."', '".$organization."', '".$email."', '".$mobile."', '".$userPic."')";
+			$sql = "INSERT INTO tblfacilitator(facilitator_name, designation, organization, email, mobile, image)
+					values('".$facilitator_name."', '".$designation."', '".$organization."', '".$email."', '".$mobile."', '".$userPic."')";
 			$result = mysqli_query($conn, $sql);
 			if($result){
 				$successMsg = 'New record added successfully';

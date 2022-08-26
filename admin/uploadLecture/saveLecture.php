@@ -3,9 +3,9 @@ require_once('../config/dbcon.php');
 
 
 if (isset($_POST['Submit'])) {
-	$course = $_POST['course_name'];
-	$subject = $_POST['subject_name'];
-	$facilitator = $_POST['facilitator_name'];
+	$course = $_POST['course_id'];
+	$subject = $_POST['subject_id'];
+	$facilitator = $_POST['facilitator_id'];
 	$lecture_name = $_POST['lecture_name'];
 
 	
@@ -31,7 +31,7 @@ if (isset($_POST['Submit'])) {
 
 		if (!isset($errorMsg)) {
 			$sql = "INSERT INTO tbluploadlecture(course_id, subject_id, facilitator_id, lecture_name, lecture_file)
-					values('" . $course . "','" . $subject. "', '" . $facilitator . "','" . $lecture_name . "', '" . $lecture_file . "')";
+					values('" . $course . "','" . $subject . "', '" . $facilitator . "','" . $lecture_name . "', '" . $lecture_file . "')";
 			$result = mysqli_query($conn, $sql);
 			if ($result) {
 				$successMsg = 'New record added successfully';

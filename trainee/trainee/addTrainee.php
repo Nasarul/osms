@@ -22,7 +22,7 @@ include_once('../includes/header.php')
 
 <!-- extra code for NAPD's auto number -->
 
-<!-- <?php
+<?php
         $query2 = "select * from tbltrainee order by trainee_roll desc limit 1";
         $result2 = mysqli_query($conn,$query2);
         $row = mysqli_fetch_array($result2);
@@ -37,7 +37,7 @@ include_once('../includes/header.php')
             $trainee_roll = intval($trainee_roll);
             $trainee_roll = "2021PGD4ICT01101" . ($trainee_roll + 1);
         }
-    ?> -->
+    ?>
 
 <div class="container">
     <div class="row justify-content-center">

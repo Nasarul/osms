@@ -1,5 +1,5 @@
 <?php
-// include('../includes/header.php');
+include('../includes/header.php');
 ?>
 
 <!DOCTYPE html>
@@ -31,17 +31,17 @@
 				</select>
 
 				<?php 
-				$id = $_GET['sub_id']; // Get id from url bar
+				$id = $_GET['subject_id']; // Get id from url bar
 
 				if (!$id) {
 					header("Location: index.php");
 				}  
-					$sql = "SELECT * FROM tblsubject WHERE sub_id='$id'";
+					$sql = "SELECT * FROM tblsubject WHERE subject_id='$id'";
 					$result = mysqli_query($conn, $sql);
 					if (mysqli_num_rows($result) > 0) {
 						if ($row = mysqli_fetch_assoc($result)) {
 					?>
-					<a href="../uploads/lecture/"<? echo $row['name']; ?> download="<?php echo $row['name']; ?>" class="download_link"><?php echo $row['name']; ?></a>
+					<a href="../uploads/lecture/"<? echo $row['lecture_name']; ?> download="<?php echo $row['lecture_name']; ?>" class="download_link"><?php echo $row['lecture_name']; ?></a>
 					<?php
 						}
 					}				

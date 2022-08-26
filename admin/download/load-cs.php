@@ -2,24 +2,24 @@
 
 	$conn = mysqli_connect("localhost","root","","napd_olms") or die("Connection failed");
 
-	if($_POST['file'] == ""){
+	if($_POST['type'] == ""){
 		$sql = "SELECT * FROM tblcourse";
 
 		$query = mysqli_query($conn,$sql) or die("Query Unsuccessful.");
 
 		$str = "";
 		while($row = mysqli_fetch_assoc($query)){
-		  $str .= "<option value='{$row['course_id']}'>{$row['name']}</option>";
+		  $str .= "<option value='{$row['course_id']}'>{$row['course_name']}</option>";
 		}
-	}else if($_POST['file'] == "subjectData"){
+	}else if($_POST['type'] == "subjectData"){
 
-		$sql = "SELECT * FROM tblsubject WHERE course_name = {$_POST['id']}";
+		$sql = "SELECT * FROM tblsubject WHERE course_name = {$_POST['course_id']}";
 
 		$query = mysqli_query($conn,$sql) or die("Query Unsuccessful.");
 
 		$str = "";
 		while($row = mysqli_fetch_assoc($query)){
-		  $str .= "<option value='{$row['sub_id']}'>{$row['name']}</option>";
+		  $str .= "<option value='{$row['subject_id']}'>{$row['subject_name']}</option>";
 		}
 	}
 

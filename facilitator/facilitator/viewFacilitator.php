@@ -2,9 +2,9 @@
 require_once('../config/dbcon.php');
 $upload_dir = '../uploads/facilitator/';
 
-if (isset($_GET['tech_id'])) {
-  $tech_id = $_GET['tech_id'];
-  $sql = "SELECT * FROM tblteacher WHERE tech_id=" . $tech_id;
+if (isset($_GET['facilitator_id'])) {
+  $facilitator_id = $_GET['facilitator_id'];
+  $sql = "SELECT * FROM tblfacilitator WHERE facilitator_id=" . $facilitator_id;
   $result = mysqli_query($conn, $sql);
   if (mysqli_num_rows($result) > 0) {
     $row = mysqli_fetch_assoc($result);
@@ -35,7 +35,7 @@ include_once('../includes/header.php')
             </div>
             <div class="col-md">
               <h5 class="form-control"><i class="fa-solid fa-user"></i>
-                <span><?php echo $row['name'] ?></span>
+                <span><?php echo $row['facilitator_name'] ?></span>
                 </i>
               </h5>
               <h5 class="form-control"><i class="fa-solid fa-tags"></i>

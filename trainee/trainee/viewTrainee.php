@@ -1,6 +1,6 @@
 <?php
 require_once('../config/dbcon.php');
-$upload_dir = '../.././admin/uploads/trainee/';
+$upload_dir = '../../admin/uploads/trainee/';
 // $upload_dir = '';
 
 if (isset($_GET['trainee_id'])) {

@@ -79,7 +79,7 @@
           </a>
         </li>
         <li class="nav-item dropdown">
-          <a href="fileUpDown/index.php" class="nav-link nav-course">
+          <a href="uploadLecture/index.php" class="nav-link nav-course">
             <i class="fa-solid fa-file-circle-plus"></i>
             <p>
               Upload lectur file 2

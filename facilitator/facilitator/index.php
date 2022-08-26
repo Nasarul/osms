@@ -1,6 +1,10 @@
 <?php
-include('deleteTeacher.php');
-include('../includes/header.php')
+session_start();
+include('deleteFacilitator.php');
+include('../includes/header.php');
+// include("../includes/sidebar.php");
+// include("../includes/topbar.php");
+$upload_dir = '../admin/uploads/facililator/';
 ?>
 
 <body>
@@ -13,7 +17,7 @@ include('../includes/header.php')
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto"></ul>
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item"><a class="btn btn-primary" href="addTeacher.php"><i class="fa fa-user-plus"></i>Add Facilitator's Info</a></li><br></br>
+          <!-- <li class="nav-item"><a class="btn btn-primary" href="addFacilitator.php"><i class="fa fa-user-plus"></i>Add Facilitator's Info</a></li><br></br> -->
           <li class="nav-item"><a class="btn btn-outline-danger" href="../index.php"><i class="fa fa-sign-out-alt"></i>Back to Dashboard</a></li>
         </ul>
       </div>
@@ -28,9 +32,9 @@ include('../includes/header.php')
             <table id="example" class="table table-striped table-bordered" style="width:100%">
               <thead>
                 <tr>
-                  <th>SL.</th>
+                  <!-- <th>SL.</th> -->
                   <th style="text-align:center">Image</th>
-                  <th style="text-align:center">Name</th>
+                  <th style="text-align:center">Facilitator Name</th>
                   <th style="text-align:center">Designation</th>
                   <th style="text-align:center">Organization</th>
                   <!-- not displayed email and mobile field -->
@@ -41,26 +45,30 @@ include('../includes/header.php')
               </thead>
 
               <tbody>
-                <?php
-                $i=1;
-                $sql = "SELECT * FROM tblteacher";
+
+              <?php
+                $i = 1;
+                $sql = "SELECT * FROM tblfacilitator WHERE email = \"" . $_SESSION['SESSION_EMAIL'] . "\"";
                 $result = mysqli_query($conn, $sql);
                 if (mysqli_num_rows($result)) {
                   while ($row = mysqli_fetch_assoc($result)) {
                 ?>
+
+
+            
                     <tr>
-                      <td><?php echo $i ?></td>
+                      <!-- <td><?php echo $i ?></td> -->
                       <td style="text-align:center"><img src="<?php echo $upload_dir . $row['image'] ?>" height="40"></td>
-                      <td><?php echo $row['name'] ?></td>
+                      <td><?php echo $row['facilitator_name'] ?></td>
                       <td><?php echo $row['designation'] ?></td>
                       <td><?php echo $row['organization'] ?></td>
                       <!-- not displayed email and mobile field -->
                       <!-- <td><?php echo $row['email'] ?></td>-->
                       <td><?php echo $row['mobile'] ?></td>
                       <td class="text-center">
-                        <a href="viewTeacher.php?tech_id=<?php echo $row['tech_id'] ?>" class="btn btn-success" title="View Profile"><i class="fa fa-eye"></i></a>
-                        <a href="editTeacher.php?tech_id=<?php echo $row['tech_id'] ?>" class="btn btn-info" title="Edit Profile"><i class="fa fa-user-edit"></i></a>
-                        <!-- <a href="index.php?delete=<?php echo $row['tech_id'] ?>" class="btn btn-danger" title="Delete Profile" onclick="return confirm('Are you sure to delete this record?')"><i class="fa fa-trash-alt"></i></a> -->
+                        <a href="viewFacilitator.php?facilitator_id=<?php echo $row['facilitator_id'] ?>" class="btn btn-success" title="View Profile"><i class="fa fa-eye"></i></a>
+                        <a href="editFacilitator.php?facilitator_id=<?php echo $row['facilitator_id'] ?>" class="btn btn-info" title="Edit Profile"><i class="fa fa-user-edit"></i></a>
+                        <!-- <a href="index.php?delete=<?php echo $row['facilitator_id'] ?>" class="btn btn-danger" title="Delete Profile" onclick="return confirm('Are you sure to delete this record?')"><i class="fa fa-trash-alt"></i></a> -->
                       </td>
                     </tr>
                 <?php
@@ -77,7 +85,7 @@ include('../includes/header.php')
   </div>
 
   <!-- Pagenation--->
-  <nav aria-label="Page navigation example" id="pagination">
+  <!-- <nav aria-label="Page navigation example" id="pagination">
     <ul class="pagination justify-content-center my-3">
       <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
       <li class="page-item active"><a class="page-link" href="#">1</a></li>
@@ -85,7 +93,7 @@ include('../includes/header.php')
       <li class="page-item"><a class="page-link" href="#">3</a></li>
       <li class="page-item"><a class="page-link" href="#">Next</a></li>
     </ul>
-  </nav>
+  </nav> -->
 
   <script src="js/bootstrap.min.js" charset="utf-8"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" charset="utf-8"></script>

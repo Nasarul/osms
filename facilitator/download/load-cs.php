@@ -1,6 +1,6 @@
 <?php
 
-	$conn = mysqli_connect("localhost","root","","napd_osms") or die("Connection failed");
+	$conn = mysqli_connect("localhost","root","","napd_olms") or die("Connection failed");
 
 	if($_POST['type'] == ""){
 		$sql = "SELECT * FROM tblcourse";
@@ -9,7 +9,7 @@
 
 		$str = "";
 		while($row = mysqli_fetch_assoc($query)){
-		  $str .= "<option value='{$row['course_id']}'>{$row['name']}</option>";
+		  $str .= "<option value='{$row['course_id']}'>{$row['course_name']}</option>";
 		}
 	}else if($_POST['type'] == "subjectData"){
 
@@ -19,7 +19,7 @@
 
 		$str = "";
 		while($row = mysqli_fetch_assoc($query)){
-		  $str .= "<option value='{$row['sub_id']}'>{$row['name']}</option>";
+		  $str .= "<option value='{$row['subject_id']}'>{$row['subject_name']}</option>";
 		}
 	}
 

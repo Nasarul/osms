@@ -9,7 +9,7 @@
 
 		$str = "";
 		while($row = mysqli_fetch_assoc($query)){
-		  $str .= "<option value='{$row['course_id']}'>{$row['name']}</option>";
+		  $str .= "<option value='{$row['course_id']}'>{$row['course_name']}</option>";
 		}
 	}else if($_POST['type'] == "subjectData"){
 

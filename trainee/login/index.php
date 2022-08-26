@@ -1,45 +1,55 @@
 <?php
-    session_start();
-    if (isset($_SESSION['SESSION_EMAIL'])) {
-        header("Location:../index.php");
-        die();
+session_start();
+if (isset($_SESSION['SESSION_EMAIL'])) {
+    header("Location:../index.php");
+    die();
+}
+
+include '../../dbcon.php';
+$msg = "";
+
+if (isset($_GET['verification'])) {
+    if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM traineeusers WHERE code='{$_GET['verification']}'")) > 0) {
+        $query = mysqli_query($conn, "UPDATE traineeusers SET code='' WHERE code='{$_GET['verification']}'");
+
+        if ($query) {
+            $msg = "<div class='alert alert-success'>Account verification has been successfully completed.</div>";
+        }
+    } else {
+        header("Location: index.php");
     }
+}
 
-    include '../../dbcon.php';
-    $msg = "";
+if (isset($_POST['submit'])) {
+    $email = mysqli_real_escape_string($conn, $_POST['email']);
+    $password = mysqli_real_escape_string($conn, md5($_POST['password']));
 
-    if (isset($_GET['verification'])) {
-        if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM traineeusers WHERE code='{$_GET['verification']}'")) > 0) {
-            $query = mysqli_query($conn, "UPDATE traineeusers SET code='' WHERE code='{$_GET['verification']}'");
-            
-            if ($query) {
-                $msg = "<div class='alert alert-success'>Account verification has been successfully completed.</div>";
+    $sql = "SELECT * FROM traineeusers WHERE email='{$email}' AND password='{$password}'";
+    $result = mysqli_query($conn, $sql);
+
+    if (mysqli_num_rows($result) === 1) {
+        $row = mysqli_fetch_assoc($result);
+
+        if (empty($row['code'])) {
+            $_SESSION['SESSION_EMAIL'] = $email;
+
+
+
+            $sql = "SELECT * FROM tbltrainee WHERE email = \"" . $_SESSION['SESSION_EMAIL'] . "\"";
+
+            $result = mysqli_query($conn, $sql);
+            if (mysqli_num_rows($result)) {
+                while ($row = mysqli_fetch_assoc($result)) {
+                    header("Location: ../trainee/viewTrainee.php?trainee_id={$row['trainee_id']}");
+                }
             }
         } else {
-            header("Location: index.php");
+            $msg = "<div class='alert alert-info'>First verify your account and try again.</div>";
         }
+    } else {
+        $msg = "<div class='alert alert-danger'>Email or password do not match.</div>";
     }
-
-    if (isset($_POST['submit'])) {
-        $email = mysqli_real_escape_string($conn, $_POST['email']);
-        $password = mysqli_real_escape_string($conn, md5($_POST['password']));
-
-        $sql = "SELECT * FROM traineeusers WHERE email='{$email}' AND password='{$password}'";
-        $result = mysqli_query($conn, $sql);
-
-        if (mysqli_num_rows($result) === 1) {
-            $row = mysqli_fetch_assoc($result);
-
-            if (empty($row['code'])) {
-                $_SESSION['SESSION_EMAIL'] = $email;
-                header("Location: ../index.php");
-            } else {
-                $msg = "<div class='alert alert-info'>First verify your account and try again.</div>";
-            }
-        } else {
-            $msg = "<div class='alert alert-danger'>Email or password do not match.</div>";
-        }
-    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -50,8 +60,7 @@
     <!-- Meta tag Keywords -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8" />
-    <meta name="keywords"
-        content="Login Form" />
+    <meta name="keywords" content="Login Form" />
     <!-- //Meta tag Keywords -->
 
     <link href="//fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -102,9 +111,9 @@
 
     <script src="js/jquery.min.js"></script>
     <script>
-        $(document).ready(function (c) {
-            $('.alert-close').on('click', function (c) {
-                $('.main-mockup').fadeOut('slow', function (c) {
+        $(document).ready(function(c) {
+            $('.alert-close').on('click', function(c) {
+                $('.main-mockup').fadeOut('slow', function(c) {
                     $('.main-mockup').remove();
                 });
             });
