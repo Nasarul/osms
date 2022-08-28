@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 25, 2022 at 03:51 PM
+-- Generation Time: Aug 28, 2022 at 08:00 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -135,11 +135,10 @@ INSERT INTO `tblcourse` (`course_id`, `course_name`, `duration`) VALUES
 CREATE TABLE `tblfacilitator` (
   `facilitator_id` int(11) NOT NULL,
   `facilitator_name` text NOT NULL,
-  `course_id` int(11) NOT NULL,
   `designation` text NOT NULL,
   `organization` text NOT NULL,
   `email` text NOT NULL,
-  `mobile` int(20) NOT NULL,
+  `mobile` varchar(20) NOT NULL,
   `image` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -147,11 +146,37 @@ CREATE TABLE `tblfacilitator` (
 -- Dumping data for table `tblfacilitator`
 --
 
-INSERT INTO `tblfacilitator` (`facilitator_id`, `facilitator_name`, `course_id`, `designation`, `organization`, `email`, `mobile`, `image`) VALUES
-(1, 'Md. Nasarul Hasan', 2, 'Personal Officer', 'Cabinet Division', 'nasarulhasan@gmail.com', 1552457194, '1644730556_6268.jpg'),
-(2, 'Afroza Najnin Asha', 1, 'Professor of House', 'Dhaka University', 'afrozanajnin@gmail.com', 1682477099, '1644730623_5880.jpg'),
-(3, 'Md. Thamidul Hasan', 3, 'Class Seven', 'Udayon School', 'thamidulhasan@gmail.com', 2147483647, '1644730669_1700.jpg'),
-(4, 'aaaaaaaaaaaabbbbb', 4, 'bbbbbbbbbbbbccccc', 'cccccccccccddddd', 'ddddeeee@gmail.com', 9999999, '1661260420_5254.jpg');
+INSERT INTO `tblfacilitator` (`facilitator_id`, `facilitator_name`, `designation`, `organization`, `email`, `mobile`, `image`) VALUES
+(1, 'Md. Nasarul Hasan', 'Personal Officer', 'Cabinet Division', 'nasarulhasan@gmail.com', '01552457194', '1644730556_6268.jpg'),
+(2, 'Afroza Najnin Asha', 'Professor of House', 'Dhaka University', 'afrozanajnin@gmail.com', '01682477099', '1644730623_5880.jpg'),
+(3, 'Md. Thamidul Hasan', 'Class Seven', 'Udayon School', 'thamidulhasan@gmail.com', '02147483647', '1644730669_1700.jpg'),
+(4, 'Ahmed Khalil', 'Professior', 'Dhaka University, Bangladesh', 'ahmedkhalil@gmail.com', '01555555555', '1661521856_3360.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tblfacilitatorcopy`
+--
+
+CREATE TABLE `tblfacilitatorcopy` (
+  `facilitator_id` int(11) NOT NULL DEFAULT 0,
+  `facilitator_name` text NOT NULL,
+  `designation` text NOT NULL,
+  `organization` text NOT NULL,
+  `email` text NOT NULL,
+  `mobile` varchar(20) NOT NULL,
+  `image` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tblfacilitatorcopy`
+--
+
+INSERT INTO `tblfacilitatorcopy` (`facilitator_id`, `facilitator_name`, `designation`, `organization`, `email`, `mobile`, `image`) VALUES
+(1, 'Md. Nasarul Hasan', 'Personal Officer', 'Cabinet Division', 'nasarulhasan@gmail.com', '01552457194', '1644730556_6268.jpg'),
+(2, 'Afroza Najnin Asha', 'Professor of House', 'Dhaka University', 'afrozanajnin@gmail.com', '01682477099', '1644730623_5880.jpg'),
+(3, 'Md. Thamidul Hasan', 'Class Seven', 'Udayon School', 'thamidulhasan@gmail.com', '02147483647', '1644730669_1700.jpg'),
+(4, 'Ahmed Khalil', 'Professior', 'Dhaka University, Bangladesh', 'ahmedkhalil@gmail.com', '01555555555', '1661521856_3360.jpg');
 
 -- --------------------------------------------------------
 
@@ -161,21 +186,34 @@ INSERT INTO `tblfacilitator` (`facilitator_id`, `facilitator_name`, `course_id`,
 
 CREATE TABLE `tbllecture` (
   `lecture_id` int(11) NOT NULL,
+  `lecture_name` varchar(255) NOT NULL,
+  `lecture_file` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbllecturecopy`
+--
+
+CREATE TABLE `tbllecturecopy` (
+  `lecture_id` int(11) NOT NULL DEFAULT 0,
+  `facilitator_id` int(11) NOT NULL,
   `lecture_name` varchar(100) NOT NULL,
   `new_name` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `tbllecture`
+-- Dumping data for table `tbllecturecopy`
 --
 
-INSERT INTO `tbllecture` (`lecture_id`, `lecture_name`, `new_name`) VALUES
-(1, 'চাঁদা সংগ্রহের ছক.pdf', '1608221660673881চাঁদা সংগ্রহের ছক.pdf'),
-(2, 'চাঁদা সংগ্রহের ছক.pdf', '1608221660660589চাঁদা সংগ্রহের ছক.pdf'),
-(3, 'draft membership form-CCJ.pdf', '1608221660660572draft membership form-CCJ.pdf'),
-(4, 'CCBF94.jpg', '1508221660558809CCBF94.jpg'),
-(5, 'draft membership form-CCJ.pdf', '1508221660559218draft membership form-CCJ.pdf'),
-(6, 'draft membership form-CCJ.pdf', '1508221660581237draft membership form-CCJ.pdf');
+INSERT INTO `tbllecturecopy` (`lecture_id`, `facilitator_id`, `lecture_name`, `new_name`) VALUES
+(1, 2, 'চাঁদা সংগ্রহের ছক.pdf', '1608221660673881চাঁদা সংগ্রহের ছক.pdf'),
+(2, 1, 'চাঁদা সংগ্রহের ছক.pdf', '1608221660660589চাঁদা সংগ্রহের ছক.pdf'),
+(3, 2, 'draft membership form-CCJ.pdf', '1608221660660572draft membership form-CCJ.pdf'),
+(4, 4, 'CCBF94.jpg', '1508221660558809CCBF94.jpg'),
+(5, 3, 'draft membership form-CCJ.pdf', '1508221660559218draft membership form-CCJ.pdf'),
+(6, 1, 'draft membership form-CCJ.pdf', '1508221660581237draft membership form-CCJ.pdf');
 
 -- --------------------------------------------------------
 
@@ -185,6 +223,30 @@ INSERT INTO `tbllecture` (`lecture_id`, `lecture_name`, `new_name`) VALUES
 
 CREATE TABLE `tblsubject` (
   `subject_id` int(11) NOT NULL,
+  `code` varchar(20) NOT NULL,
+  `subject_name` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tblsubject`
+--
+
+INSERT INTO `tblsubject` (`subject_id`, `code`, `subject_name`) VALUES
+(1, 'ICT-101', 'Fundamentals of ICT and Programming Language'),
+(2, 'ICT-111', 'Multimedia System Design'),
+(3, 'ICT-107', 'Networking and Data Communication'),
+(4, 'ICT-103', 'System Analysis and Design'),
+(5, 'ICT-106', 'Web Technology and Cyber Security'),
+(6, 'ICT-109', 'e-Governance, e-Commerce & ICT Project Management');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tblsubjectcopy`
+--
+
+CREATE TABLE `tblsubjectcopy` (
+  `subject_id` int(11) NOT NULL DEFAULT 0,
   `course_id` int(11) NOT NULL,
   `subject_name` text NOT NULL,
   `code` varchar(20) NOT NULL,
@@ -193,10 +255,10 @@ CREATE TABLE `tblsubject` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `tblsubject`
+-- Dumping data for table `tblsubjectcopy`
 --
 
-INSERT INTO `tblsubject` (`subject_id`, `course_id`, `subject_name`, `code`, `facilitator_id`, `lecture`) VALUES
+INSERT INTO `tblsubjectcopy` (`subject_id`, `course_id`, `subject_name`, `code`, `facilitator_id`, `lecture`) VALUES
 (1, 1, 'Fundamentals of ICT and Programming Language', 'ICT-101', 1, '2'),
 (2, 1, 'Multimedia System Design', 'ICT-111', 1, '1'),
 (3, 2, 'Networking and Data Communication', 'ICT-107', 2, '4'),
@@ -216,7 +278,7 @@ CREATE TABLE `tbltrainee` (
   `designation` text NOT NULL,
   `organization` text NOT NULL,
   `email` varchar(60) NOT NULL,
-  `mobile` int(20) NOT NULL,
+  `mobile` text NOT NULL,
   `dob` date NOT NULL,
   `bg` varchar(15) NOT NULL,
   `image` text NOT NULL
@@ -227,9 +289,9 @@ CREATE TABLE `tbltrainee` (
 --
 
 INSERT INTO `tbltrainee` (`trainee_id`, `trainee_roll`, `trainee_name`, `designation`, `organization`, `email`, `mobile`, `dob`, `bg`, `image`) VALUES
-(1, '2021PGD4ICT01101', 'Afroza Najnin Asha', 'Professor of Home', 'Home Ministry', 'afrozanajnin@gmail.com', 1682477099, '2020-02-02', 'AB(+)', '1644730270_9949.jpg'),
-(2, '2021PGD4ICT01102', 'Sadia Sultana', 'Personal ', 'Dhaka University, Bangladesh', 'osmangani@gmail.com', 2147483647, '2022-02-28', 'O(+)', '1644765466_9830.jpg'),
-(3, '2021PGD4ICT01103', 'Hasan Mia', 'Personal Of', 'Cabinet D', 'afrozanajnin@gmail.com', 2147483647, '1920-02-11', 'AB(-)', '1644730319_9081.jpg');
+(1, '2021PGD4ICT01101', 'Afroza Najnin Asha', 'Professor of Home', 'Home Ministry', 'afrozanajnin@gmail.com', '+8801682477099', '2020-02-02', 'AB(+)', '1644730270_9949.jpg'),
+(2, '2021PGD4ICT01102', 'Sadia Sultana', 'Personal Assistant', 'Dhaka University, Bangladesh', 'nasarulhasan@gmail.com', '018147483647', '2022-02-28', 'O(+)', '1644765466_9830.jpg'),
+(3, '2021PGD4ICT01103', 'Hasan Mia', 'Personal Officer', 'Cabinet Division', 'afrozanajnin@gmail.com', '2147483647', '1920-02-11', 'AB(-)', '1644730319_9081.jpg');
 
 -- --------------------------------------------------------
 
@@ -242,7 +304,6 @@ CREATE TABLE `tbluploadlecture` (
   `course_id` int(11) NOT NULL,
   `subject_id` int(11) NOT NULL,
   `facilitator_id` int(11) NOT NULL,
-  `new_lecture_name` text NOT NULL,
   `lecture_name` text NOT NULL,
   `lecture_file` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -251,11 +312,33 @@ CREATE TABLE `tbluploadlecture` (
 -- Dumping data for table `tbluploadlecture`
 --
 
-INSERT INTO `tbluploadlecture` (`upload_lecture_id`, `course_id`, `subject_id`, `facilitator_id`, `new_lecture_name`, `lecture_name`, `lecture_file`) VALUES
-(1, 1, 1, 2, '', 'Network', ''),
-(2, 2, 2, 1, '', 'adsfadsfadsf', ''),
-(3, 3, 1, 1, '', 'asdfasdfasd', 'Chinese Classes.pdf'),
-(4, 0, 0, 0, '', 'NAPD course for Development', 'AdminLTE 3  DataTables.pdf');
+INSERT INTO `tbluploadlecture` (`upload_lecture_id`, `course_id`, `subject_id`, `facilitator_id`, `lecture_name`, `lecture_file`) VALUES
+(1, 1, 1, 1, 'aaaaaaaaaa', 'SM.jpg'),
+(2, 4, 3, 2, 'Trouble shutting and others', 'Program.pdf');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbluploadlecturecopy2`
+--
+
+CREATE TABLE `tbluploadlecturecopy2` (
+  `upload_lecture_id` int(11) NOT NULL,
+  `course_id` int(11) NOT NULL,
+  `subject_id` int(11) NOT NULL,
+  `facilitator_id` int(11) NOT NULL,
+  `lecture_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbluploadlecturecopy2`
+--
+
+INSERT INTO `tbluploadlecturecopy2` (`upload_lecture_id`, `course_id`, `subject_id`, `facilitator_id`, `lecture_id`) VALUES
+(1, 1, 1, 1, 2),
+(2, 4, 3, 2, 1),
+(3, 3, 2, 3, 2),
+(4, 3, 2, 3, 2);
 
 -- --------------------------------------------------------
 
@@ -268,8 +351,7 @@ CREATE TABLE `tbluploadvideo` (
   `course_id` int(11) NOT NULL,
   `subject_id` int(11) NOT NULL,
   `facilitator_id` int(11) NOT NULL,
-  `video_name` text NOT NULL,
-  `video_file` text NOT NULL
+  `video_name` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -347,18 +429,18 @@ CREATE TABLE `video` (
   `title` text NOT NULL,
   `description` text NOT NULL,
   `thumbnail` text NOT NULL,
-  `video` text NOT NULL
+  `video_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `video`
 --
 
-INSERT INTO `video` (`id`, `title`, `description`, `thumbnail`, `video`) VALUES
-(1, 'Test video', 'Test video file for nature', 'download (3).jpg', 'Pexels Videos 1722697.mp4'),
-(2, 'Computer Network ', 'Lecture computer network file system', 'download1.jpg', 'Pexels Videos 1409899.mp4'),
-(11, 'Extra', 'This is extra video', 'Arts_page-0001.jpg', 'GMT20220116-140925_Recording_1686x768.mp4'),
-(12, '', '', '', '');
+INSERT INTO `video` (`id`, `title`, `description`, `thumbnail`, `video_id`) VALUES
+(1, 'Test video', 'Test video file for nature', 'download (3).jpg', 0),
+(2, 'Computer Network ', 'Lecture computer network file system', 'download1.jpg', 0),
+(11, 'Extra', 'This is extra video', 'Arts_page-0001.jpg', 0),
+(12, '', '', '', 0);
 
 --
 -- Indexes for dumped tables
@@ -417,6 +499,12 @@ ALTER TABLE `tbltrainee`
 -- Indexes for table `tbluploadlecture`
 --
 ALTER TABLE `tbluploadlecture`
+  ADD PRIMARY KEY (`upload_lecture_id`);
+
+--
+-- Indexes for table `tbluploadlecturecopy2`
+--
+ALTER TABLE `tbluploadlecturecopy2`
   ADD PRIMARY KEY (`upload_lecture_id`);
 
 --
@@ -487,13 +575,13 @@ ALTER TABLE `tblfacilitator`
 -- AUTO_INCREMENT for table `tbllecture`
 --
 ALTER TABLE `tbllecture`
-  MODIFY `lecture_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `lecture_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tblsubject`
 --
 ALTER TABLE `tblsubject`
-  MODIFY `subject_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `subject_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `tbltrainee`
@@ -505,7 +593,13 @@ ALTER TABLE `tbltrainee`
 -- AUTO_INCREMENT for table `tbluploadlecture`
 --
 ALTER TABLE `tbluploadlecture`
-  MODIFY `upload_lecture_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `upload_lecture_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `tbluploadlecturecopy2`
+--
+ALTER TABLE `tbluploadlecturecopy2`
+  MODIFY `upload_lecture_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `tbluploadvideo`
