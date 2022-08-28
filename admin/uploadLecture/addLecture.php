@@ -52,13 +52,11 @@ include('../config/dbcon.php');
                   }
                   echo "</select>";
                   ?>
-
                 </div>
 
 
                 <div class="form-group">
                   <label for="subject_name">Subject Name</label>
-
                   <?php
                   $sql = "SELECT * FROM tblsubject;";
                   $result = mysqli_query($conn, $sql);

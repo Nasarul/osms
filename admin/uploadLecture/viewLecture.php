@@ -4,7 +4,7 @@ include('../config/dbcon.php');
 
 if (isset($_GET['id'])) {
   $id = $_GET['id'];
-  $sql = "SELECT tbluploadlecture.lecture_name, tblsubject.subject_name, tblcourse.course_name, tblfacilitator.facilitator_name, tbluploadlecture.upload_lecture_id, tbluploadlecture.lecture_file FROM tbluploadlecture INNER JOIN tblcourse ON tbluploadlecture.course_id = tblcourse.course_id INNER JOIN tblsubject ON tblcourse.course_id = tblsubject.course_id INNER JOIN tblfacilitator ON tblsubject.course_id = tblfacilitator.course_id;";
+  $sql = "SELECT tbluploadlecture.upload_lecture_id, tblcourse.course_name, tblsubject.subject_name, tblfacilitator.facilitator_name, tbllecture.lecture_name from tbluploadlecture LEFT JOIN tblcourse ON tbluploadlecture.course_id = tblcourse.course_id LEFT JOIN tblsubject ON tbluploadlecture.subject_id = tblsubject.subject_id LEFT JOIN tblfacilitator ON tbluploadlecture.facilitator_id = tblfacilitator.facilitator_id LEFT JOIN tbllecture ON tbluploadlecture.lecture_id = tbllecture.lecture_id;";
   $result = mysqli_query($conn, $sql);
   if (mysqli_num_rows($result) > 0) {
     $row = mysqli_fetch_assoc($result);

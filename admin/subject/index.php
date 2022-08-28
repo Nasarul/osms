@@ -30,8 +30,6 @@ include('../includes/header.php');
               <thead>
                 <tr>
                   <th style="text-align:center">SL.</th>
-                  <!-- <th style="text-align:center">Course ID</th> -->
-                  <th style="text-align:center">Course Name</th>
                   <th style="text-align:center">Subject Code</th>
                   <th style="text-align:center">Subject Name</th>
                   <th style="text-align:center">Actions</th>
@@ -41,19 +39,15 @@ include('../includes/header.php');
               <tbody>
                 <?php
                 $i = 1;
-                $sql = "SELECT subject_id, course_name, code, subject_name FROM tblsubject INNER JOIN tblcourse ON tblsubject.course_id = tblcourse.course_id";
-
+                $sql = "SELECT * FROM tblsubject";
                 $result = mysqli_query($conn, $sql);
                 if (mysqli_num_rows($result)) {
                   while ($row = mysqli_fetch_assoc($result)) {
                 ?>
                     <tr>
                       <td><?php echo $i ?></td>
-                      <!-- <td><?php echo $row['course_id'] ?></td> -->
-                      <td><?php echo $row['course_name'] ?></td>
                       <td><?php echo $row['code'] ?></td>
                       <td><?php echo $row['subject_name'] ?></td>
-                      <!-- <td><?php echo $row['lecture'] ?></td> -->
 
                       <td class="text-center">
                         <a href="viewSubject.php?subject_id=<?php echo $row['subject_id'] ?>" class="btn btn-success" title="View Subject"><i class="fa fa-eye"></i></a>

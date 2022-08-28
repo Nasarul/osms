@@ -17,7 +17,7 @@ if (isset($_POST['Submit'])) {
   $course_id = $_POST['course_id'];
   $subject_id = $_POST['subject_id'];
   $facilitator_id = $_POST['facilitator_id'];
-  $lecture_name = $_POST['lecture_name'];
+  $lecture_id = $_POST['lecture_id'];
 
   $lecture_file = $_FILES['lecture']['name'];
   $lecture_type = $_FILES['lecture']['type'];
@@ -60,7 +60,7 @@ if (isset($_POST['Submit'])) {
 									SET course_id = '" . $course_id . "',
                   subject_id = '" . $subject_id . "',
                   facilitator_id = '" . $facilitator_id . "',
-                  lecture_name = '" . $lecture_name . "'
+                  lecture_id = '" . $lecture_id . "'
 				WHERE	upload _lecture_id=" . $id;
     $result = mysqli_query($conn, $sql);
     if ($result) {
@@ -104,7 +104,7 @@ include_once('../includes/header.php')
               $errorMsg = 'Could not find any record';
             }
 
-      
+
             $sql = "SELECT subject_name FROM tblsubject WHERE subject_id =" . $row['subject_id'];
             $result = mysqli_query($conn, $sql);
             if (mysqli_num_rows($result) > 0) {
@@ -117,6 +117,14 @@ include_once('../includes/header.php')
             $result = mysqli_query($conn, $sql);
             if (mysqli_num_rows($result) > 0) {
               $facilitator = mysqli_fetch_assoc($result);
+            } else {
+              $errorMsg = 'Could not find any record';
+            }
+
+            $sql = "SELECT lecture_name FROM tbllecture WHERE lecture_id =" . $row['lecture_id'];
+            $result = mysqli_query($conn, $sql);
+            if (mysqli_num_rows($result) > 0) {
+              $lecture = mysqli_fetch_assoc($result);
             } else {
               $errorMsg = 'Could not find any record';
             }
@@ -137,7 +145,7 @@ include_once('../includes/header.php')
             </div>
             <div class="form-group">
               <label for="name">Lecture Name</label>
-              <input type="text" class="form-control" name="lecture_name" placeholder="Enter Lecture Name" value="<?php echo $row['lecture_name']; ?>">
+              <input type="text" class="form-control" name="lecture_name" placeholder="Enter Lecture Name" value="<?php echo $lecture['lecture_name']; ?>">
             </div>
             <div class="form-group">
               <label for="name">Lecture File</label>

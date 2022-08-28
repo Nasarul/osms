@@ -33,7 +33,7 @@ include('../config/dbcon.php');
               <div class="form-group">
 
                 <!-- <?php
-                $sql = "SELECT tbluploadlecture.lecture_name, tblsubject.subject_name, tblcourse.course_name, tblfacilitator.facilitator_name, tbluploadlecture.upload_lecture_id, tbluploadlecture.lecture_file FROM tbluploadlecture INNER JOIN tblcourse ON tbluploadlecture.course_id = tblcourse.course_id INNER JOIN tblsubject ON tblcourse.course_id = tblsubject.course_id INNER JOIN tblfacilitator ON tblsubject.course_id = tblfacilitator.course_id;";
+                $sql = "SELECT tbluploadlecture.lecture_name, tblsubject.subject_name, tblcourse.course_name, tblfacilitator.facilitator_name,  tbluploadlecture.lecture_file FROM tbluploadlecture INNER JOIN tblcourse ON tbluploadlecture.course_id = tblcourse.course_id INNER JOIN tblsubject ON tblcourse.course_id = tblsubject.course_id INNER JOIN tblfacilitator ON tblsubject.course_id = tblfacilitator.course_id;";
                 $result = mysqli_query($conn, $sql);
                 if (mysqli_num_rows($result)) {
                   while ($row = mysqli_fetch_assoc($result)) {

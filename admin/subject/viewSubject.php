@@ -34,29 +34,15 @@ include('../includes/header.php')
           <div class="row">
             <div class="col-md">
 
-              <h5 class="form-control"><i class="fa-solid fa-book"></i>
-
-
-              
-                <span><?php echo $row['course_id'] ?></span>
-                <!-- extra code will be writhe for course name -->
-                
-                </i>
-              </h5>
-              <h5 class="form-control"><i class="fa-solid fa-book"></i>
-                <span><?php echo $row['subject_name'] ?></span>
-                </i>
-              </h5>
-              <h5 class="form-control"><i class="fa-solid fa-tags"></i>
+            <h5 class="form-control"><i class="fa-solid fa-tags"></i>
                 <span><?php echo $row['code'] ?></span>
                 </i>
               </h5>
 
-              <!-- <h5 class="form-control"><i class="fa-solid fa-tags"></i>
-              <file src="<?php echo $upload_dir . $row['lecture'] ?>" height="500">
+              <h5 class="form-control"><i class="fa-solid fa-book"></i>
+                <span><?php echo $row['subject_name'] ?></span>
                 </i>
-              </h5> -->
-
+              </h5>
 
               <a class="btn btn-outline-danger" href="index.php"><i class="fa fa-sign-out-alt"></i><span>Back to Home</span></a>
 
