@@ -17,7 +17,7 @@ if (isset($_POST['Submit'])) {
   $course_id = $_POST['course_id'];
   $subject_id = $_POST['subject_id'];
   $facilitator_id = $_POST['facilitator_id'];
-  $lecture_id = $_POST['lecture_id'];
+  $lecture_name = $_POST['lecture_name'];
 
   $lecture_file = $_FILES['lecture']['name'];
   $lecture_type = $_FILES['lecture']['type'];
@@ -60,8 +60,9 @@ if (isset($_POST['Submit'])) {
 									SET course_id = '" . $course_id . "',
                   subject_id = '" . $subject_id . "',
                   facilitator_id = '" . $facilitator_id . "',
-                  lecture_id = '" . $lecture_id . "'
-				WHERE	upload _lecture_id=" . $id;
+                  lecture_name = '" . $lecture_name . "',
+                  lecture_file = '" . $lecture_file . " '
+				WHERE	upload_lecture_id=" . $id;
     $result = mysqli_query($conn, $sql);
     if ($result) {
       $successMsg = 'New record updated successfully';
@@ -95,7 +96,9 @@ include_once('../includes/header.php')
         </div>
         <div class="card-body">
           <form class="" action="" method="post" enctype="multipart/form-data">
+
             <?php
+            
             $sql = "SELECT course_name FROM tblcourse WHERE course_id =" . $row['course_id'];
             $result = mysqli_query($conn, $sql);
             if (mysqli_num_rows($result) > 0) {
@@ -121,13 +124,13 @@ include_once('../includes/header.php')
               $errorMsg = 'Could not find any record';
             }
 
-            $sql = "SELECT lecture_name FROM tbllecture WHERE lecture_id =" . $row['lecture_id'];
-            $result = mysqli_query($conn, $sql);
-            if (mysqli_num_rows($result) > 0) {
-              $lecture = mysqli_fetch_assoc($result);
-            } else {
-              $errorMsg = 'Could not find any record';
-            }
+            // $sql = "SELECT lecture_name FROM tbluploadlecture WHERE lecture_name =" . $row['lecture_name'];
+            // $result = mysqli_query($conn, $sql);
+            // if (mysqli_num_rows($result) > 0) {
+            //   $lecture = mysqli_fetch_assoc($result);
+            // } else {
+            //   $errorMsg = 'Could not find any record';
+            // }
             ?>
 
             <div class="form-group">
@@ -145,10 +148,11 @@ include_once('../includes/header.php')
             </div>
             <div class="form-group">
               <label for="name">Lecture Name</label>
-              <input type="text" class="form-control" name="lecture_name" placeholder="Enter Lecture Name" value="<?php echo $lecture['lecture_name']; ?>">
+              <input type="text" class="form-control" name="lecture_name" placeholder="Enter Lecture Name" value="<?php echo $row['lecture_name']; ?>">
             </div>
             <div class="form-group">
               <label for="name">Lecture File</label>
+              <file src="<?php echo $upload_dir . $row['lecture_file'] ?>" >
               <input type="file" class="form-control" name="lecture_file" placeholder="Upload Lecture File" value="<?php echo $upload_dir . $row['lecture_file'] ?>">
             </div>
 

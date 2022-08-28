@@ -1,19 +1,19 @@
 <?php
 include("../config/dbcon.php");
 
-if (isset($_GET['subject_id'])) {
-  $id = $_GET['subject_id'];
-  $state = $bd->prepare("select * from tblsubject where subject_id=?");
+if (isset($_GET['upload_lecture_id'])) {
+  $id = $_GET['upload_lecture_id'];
+  $state = $bd->prepare("select * from tbluploadlecture where upload_lecture_id=?");
   $stat->bindParam(1, $id);
   $stat->execute();
   $data = $stat->fetch();
-  $filepath = '../../admin/uploads/lecture/' . $data['filename'];
+  $filepath = '../../admin/uploads/lecture/' . $data['lecture_file'];
 
   // Process download
   if (file_exists($filepath)) {
     header('Content-Description: File Transfer');
     header('Content-Type: application/octet-stream');
-    header('Content-Disposition: attachment; filename="' . basename($filepath) . '"');
+    header('Content-Disposition: attachment; lecture_file="' . basename($filepath) . '"');
     header('Expires: 0');
     header('Cache-Control: must-revalidate');
     header('Pragma: public');
@@ -49,11 +49,14 @@ include_once('../includes/header.php')
         <div class="card-body">
           <div class="row">
             <h5 class="form-control"><i class="fa-solid fa-user"></i>
-              <span><?php echo $row['subject_id'] ?></span>
+              <span><?php echo $row['upload_lecture_id'] ?></span>
               </i>
             </h5>
+
+
+            
             <h5 class="form-control"><i class="fa-solid fa-tags"></i>
-              <span><?php echo $row['subject_name'] ?></span>
+              <span><?php echo $row['lecture_file'] ?></span>
               </i>
             </h5>
 

@@ -41,7 +41,7 @@ include('../includes/header.php');
               <tbody>
                 <?php
                 $i = 1;
-                $sql = "SELECT tbluploadlecture.lecture_name, tblcourse.course_name, tblsubject.subject_name, tblfacilitator.facilitator_name from tbluploadlecture LEFT JOIN tblcourse ON tbluploadlecture.course_id = tblcourse.course_id LEFT JOIN tblsubject ON tbluploadlecture.subject_id = tblsubject.subject_id LEFT JOIN tblfacilitator ON tbluploadlecture.facilitator_id = tblfacilitator.facilitator_id;";
+                $sql = "SELECT tbluploadlecture.upload_lecture_id, tbluploadlecture.lecture_name, tblcourse.course_name, tblsubject.subject_name, tblfacilitator.facilitator_name FROM tbluploadlecture LEFT JOIN tblcourse ON tbluploadlecture.course_id = tblcourse.course_id LEFT JOIN tblsubject ON tbluploadlecture.subject_id = tblsubject.subject_id LEFT JOIN tblfacilitator ON tbluploadlecture.facilitator_id = tblfacilitator.facilitator_id;";
 
                 $result = mysqli_query($conn, $sql);
                 if (mysqli_num_rows($result)) {

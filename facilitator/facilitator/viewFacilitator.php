@@ -1,6 +1,6 @@
 <?php
 require_once('../config/dbcon.php');
-$upload_dir = '../uploads/facilitator/';
+$upload_dir = '../../admin/uploads/facilitator/';
 
 if (isset($_GET['facilitator_id'])) {
   $facilitator_id = $_GET['facilitator_id'];

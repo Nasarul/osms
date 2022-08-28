@@ -1,10 +1,11 @@
 <?php
 include('../config/dbcon.php');
-// $upload_dir = '../uploads/lecture/';
+$upload_dir = '../uploads/lecture/';
 
 if (isset($_GET['id'])) {
   $id = $_GET['id'];
-  $sql = "SELECT tbluploadlecture.upload_lecture_id, tblcourse.course_name, tblsubject.subject_name, tblfacilitator.facilitator_name, tbllecture.lecture_name from tbluploadlecture LEFT JOIN tblcourse ON tbluploadlecture.course_id = tblcourse.course_id LEFT JOIN tblsubject ON tbluploadlecture.subject_id = tblsubject.subject_id LEFT JOIN tblfacilitator ON tbluploadlecture.facilitator_id = tblfacilitator.facilitator_id LEFT JOIN tbllecture ON tbluploadlecture.lecture_id = tbllecture.lecture_id;";
+  $sql = "SELECT tblcourse.course_name, tblsubject.subject_name, tblfacilitator.facilitator_name, tbluploadlecture.lecture_name FROM tbluploadlecture LEFT JOIN tblcourse ON tbluploadlecture.course_id = tblcourse.course_id LEFT JOIN tblsubject ON tbluploadlecture.subject_id = tblsubject.subject_id LEFT JOIN tblfacilitator ON tbluploadlecture.facilitator_id = tblfacilitator.facilitator_id;";
+
   $result = mysqli_query($conn, $sql);
   if (mysqli_num_rows($result) > 0) {
     $row = mysqli_fetch_assoc($result);

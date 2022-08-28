@@ -4,7 +4,7 @@ include('deleteFacilitator.php');
 include('../includes/header.php');
 // include("../includes/sidebar.php");
 // include("../includes/topbar.php");
-$upload_dir = '../admin/uploads/facililator/';
+$upload_dir = '../../admin/uploads/facilitator/';
 ?>
 
 <body>

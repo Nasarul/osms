@@ -6,7 +6,7 @@ include('download.php');
 <body>
 	<nav class="navbar navbar-expand-md navbar-light navbar-laravel">
 		<div class="container">
-			<a class="navbar-brand">Lecture Download</a>
+			<a class="navbar-brand">Session Download</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
 				<span class="navbar-toggler-icon"></span>
 			</button>
@@ -27,31 +27,42 @@ include('download.php');
 						<table id="example" class="table table-striped table-bordered" style="width:100%">
 							<thead>
 								<tr>
-									<th>Course Name</th>
-									<!-- <th>Subject Code</th> -->
-									<th>Subject Name</th>
-									<th>Actions</th>
+									<th style="text-align:center">SL.</th>
+									<th style="text-align:center">Course Name</th>
+									<th style="text-align:center">Subject Name</th>
+									<th style="text-align:center">Facilitator Name</th>
+									<th style="text-align:center">Lecture Name</th>
+									<th style="text-align:center">Actions</th>
 								</tr>
 							</thead>
 
 							<tbody>
+								<!-- Extra code -->
+
 								<?php
-								include('../config/dbcon.php');
-								$stmt = $conn->prepare("select * from tblsubject");
-								$stmt->execute();
-								while ($row = $stmt->fetch()) {
+								$i = 1;
+								$sql = "SELECT tbluploadlecture.upload_lecture_id, tbluploadlecture.lecture_name, tblcourse.course_name, tblsubject.subject_name, tblfacilitator.facilitator_name FROM tbluploadlecture LEFT JOIN tblcourse ON tbluploadlecture.course_id = tblcourse.course_id LEFT JOIN tblsubject ON tbluploadlecture.subject_id = tblsubject.subject_id LEFT JOIN tblfacilitator ON tbluploadlecture.facilitator_id = tblfacilitator.facilitator_id;";
+
+								$result = mysqli_query($conn, $sql);
+								if (mysqli_num_rows($result)) {
+									while ($row = mysqli_fetch_assoc($result)) {
 								?>
-									<tr>
-										<td><?php echo $row['subject_id'] ?></td>
-										<td><?php echo $row['code'] ?></td>
-										<td><?php echo $row['subject_name'] ?></td>
-										<td class="text-center">
-											<a href="download.php?subject_id=<?php echo $row['subject_id'] ?>" class="btn btn-success" title="Download"><i class="fa-solid fa-down"></i>Download</a>
-										</td>
-									</tr>
-								<?php
+										<tr>
+											<td><?php echo $i ?></td>
+											<td><?php echo $row['course_name'] ?></td>
+											<td><?php echo $row['subject_name'] ?></td>
+											<td><?php echo $row['facilitator_name'] ?></td>
+											<td><?php echo $row['lecture_name'] ?></td>
+
+											<td class="text-center">
+												<a href="download.php?upload_lecture_id=<?php echo $row['upload_lecture_id'] ?>" class="btn btn-success" title="Download"><i class="fa-solid fa-down"></i>Download</a>
+											</td>
+
+
+									<?php
+									}
 								}
-								?>
+									?>
 							</tbody>
 						</table>
 					</div>
