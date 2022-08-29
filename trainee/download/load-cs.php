@@ -13,13 +13,13 @@
 		}
 	}else if($_POST['type'] == "subjectData"){
 
-		$sql = "SELECT * FROM tblsubject WHERE course_name = {$_POST['id']}";
+		$sql = "SELECT * FROM tblsubject WHERE subject_id = {$_POST['upload_lecture_id']}";
 
 		$query = mysqli_query($conn,$sql) or die("Query Unsuccessful.");
 
 		$str = "";
 		while($row = mysqli_fetch_assoc($query)){
-		  $str .= "<option value='{$row['sub_id']}'>{$row['name']}</option>";
+		  $str .= "<option value='{$row['subject_id']}'>{$row['subject_name']}</option>";
 		}
 	}
 

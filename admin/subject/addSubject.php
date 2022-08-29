@@ -30,14 +30,38 @@ include_once('../includes/header.php')
               <div class="form-group">
 
                 <div class="form-group">
-                  <label for="name">Subject Code</label>
-                  <input type="text" class="form-control" name="code" placeholder="Enter Subjects code" value="">
-                </div>
+                  <label for="name">Course ID</label>
 
-                <div class="form-group">
-                  <label for="name">Subject Name</label>
-                  <input type="text" class="form-control" name="subject_name" placeholder="Enter Subjects name" value="">
+                  <?php
+                  $sql = "SELECT * FROM tblcourse;";
+                  $result = mysqli_query($conn, $sql);
+                  $resultCheck = mysqli_num_rows($result);
+                  if ($resultCheck > 0) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                      $selectedCourse[] = $row['course_name'];
+                      $selectedid[] = $row['course_id'];
+                    }
+                  }
+                  echo "<select type='text' class='form-control' name='course_id' placeholder='Enter Facilitator name' value=''>";
+
+                  for ($i = 0; $i < count($selectedid); $i++) {
+                    echo "<option value='" . $selectedid[$i] . "'>" . $selectedCourse[$i] . " </option>";
+                  }
+                  echo "</select>";
+                  ?>
                 </div>
+                
+              </div>
+
+              <div class="form-group">
+                <label for="name">Subject Code</label>
+                <input type="text" class="form-control" name="code" placeholder="Enter Subjects code" value="">
+              </div>
+
+              <div class="form-group">
+                <label for="name">Subject Name</label>
+                <input type="text" class="form-control" name="subject_name" placeholder="Enter Subjects name" value="">
+              </div>
 
           </div>
           <div class="form-group">

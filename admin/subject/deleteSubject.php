@@ -8,8 +8,7 @@ if (isset($_GET['delete'])) {
   $result = mysqli_query($conn, $sql);
   if (mysqli_num_rows($result) > 0) {
     $row = mysqli_fetch_assoc($result);
-    // $image = $row['image'];
-    // unlink($upload_dir . $image);
+ 
     $sql = "DELETE FROM tblsubject WHERE subject_id=" . $subject_id;
     if (mysqli_query($conn, $sql)) {
       header('location:index.php');

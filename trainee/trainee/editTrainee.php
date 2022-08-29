@@ -1,7 +1,5 @@
 <?php
-
 require_once('../config/dbcon.php');
-
 $upload_dir = '../../admin/uploads/trainee/';
 
 if (isset($_GET['trainee_id'])) {
@@ -72,7 +70,6 @@ if (isset($_POST['Submit'])) {
     }
   }
 }
-
 ?>
 
 

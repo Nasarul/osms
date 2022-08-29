@@ -30,6 +30,7 @@ include('../includes/header.php');
               <thead>
                 <tr>
                   <th style="text-align:center">SL.</th>
+                  <th style="text-align:center">Course Name</th>
                   <th style="text-align:center">Subject Code</th>
                   <th style="text-align:center">Subject Name</th>
                   <th style="text-align:center">Actions</th>
@@ -37,15 +38,17 @@ include('../includes/header.php');
               </thead>
 
               <tbody>
+
                 <?php
                 $i = 1;
-                $sql = "SELECT * FROM tblsubject";
+                $sql = "SELECT tblsubject.subject_id, tblsubject.code, tblsubject.subject_name, tblcourse.course_name FROM tblsubject LEFT JOIN tblcourse on tblsubject.course_id = tblcourse.course_id;";
                 $result = mysqli_query($conn, $sql);
                 if (mysqli_num_rows($result)) {
                   while ($row = mysqli_fetch_assoc($result)) {
                 ?>
                     <tr>
                       <td><?php echo $i ?></td>
+                      <td><?php echo $row['course_name'] ?></td>
                       <td><?php echo $row['code'] ?></td>
                       <td><?php echo $row['subject_name'] ?></td>
 

@@ -14,13 +14,14 @@ if (isset($_GET['subject_id'])) {
 }
 
 if (isset($_POST['Submit'])) {
+  $course_id = $_POST['course_id'];
   $code = $_POST['code'];
   $subject_name = $_POST['subject_name'];
 
-
   if (!isset($errorMsg)) {
     $sql = "UPDATE tblsubject
-									SET code = '" . $code . "',
+									SET course_id = '" . $course_id . "',
+                  code = '" . $code . "',
                   subject_name = '" . $subject_name . "'
 				WHERE	subject_id=" . $subject_id;
     $result = mysqli_query($conn, $sql);
@@ -55,7 +56,26 @@ include_once('../includes/header.php')
           <h5> Edit Subject </h5>
         </div>
         <div class="card-body">
-          <form class="" action="" method="post" enctype="multipart/form-data">
+          <form class="" action="saveSubject.php" method="post" enctype="multipart/form-data">
+
+
+            <?php
+            $sql1 = "SELECT course_name, course_id FROM tblcourse WHERE course_id =" . $row['course_id'];
+            $result1 = mysqli_query($conn, $sql1);
+            if (mysqli_num_rows($result1) > 0) {
+              $course = mysqli_fetch_assoc($result1);
+            } else {
+              $errorMsg = 'Could not find any record';
+            }
+            ?>
+            <div class="form-group">
+              <input type="hidden" class="form-control" name="abcd" placeholder="Enter Course Name..." value="<?php echo $course['course_id']; ?>">
+            </div>
+
+            <div class="form-group">
+              <label for="name">Course Name</label>
+              <input type="text" class="form-control" name="course_id" placeholder="Enter Course Name..." value="<?php echo $course['course_name']; ?>">
+            </div>
 
             <div class="form-group">
               <label for="name">Subject Code</label>
