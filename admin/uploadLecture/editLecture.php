@@ -124,13 +124,6 @@ include_once('../includes/header.php')
               $errorMsg = 'Could not find any record';
             }
 
-            // $sql = "SELECT lecture_name FROM tbluploadlecture WHERE lecture_name =" . $row['lecture_name'];
-            // $result = mysqli_query($conn, $sql);
-            // if (mysqli_num_rows($result) > 0) {
-            //   $lecture = mysqli_fetch_assoc($result);
-            // } else {
-            //   $errorMsg = 'Could not find any record';
-            // }
             ?>
 
             <div class="form-group">

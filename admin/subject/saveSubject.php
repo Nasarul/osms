@@ -17,7 +17,7 @@ if (isset($_POST['Submit'])) {
 
 		if (!isset($errorMsg)) {
 			$sql = "INSERT INTO tblsubject(course_id, code, subject_name)
-					values( $course_id ,'" . $code . "','" . $subject_name . "')";
+					values($course_id ,'" . $code . "','" . $subject_name . "')";
 	
 			$result = mysqli_query($conn, $sql);
 			if ($result) {

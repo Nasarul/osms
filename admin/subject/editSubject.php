@@ -68,9 +68,9 @@ include_once('../includes/header.php')
               $errorMsg = 'Could not find any record';
             }
             ?>
-            <div class="form-group">
-              <input type="hidden" class="form-control" name="abcd" placeholder="Enter Course Name..." value="<?php echo $course['course_id']; ?>">
-            </div>
+            <!-- <div class="form-group">
+              <input type="hidden" class="form-control" name="course_id" placeholder="Enter Course Name..." value="<?php echo $course['course_id']; ?>">
+            </div> -->
 
             <div class="form-group">
               <label for="name">Course Name</label>

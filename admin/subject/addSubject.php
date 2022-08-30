@@ -50,7 +50,6 @@ include_once('../includes/header.php')
                   echo "</select>";
                   ?>
                 </div>
-                
               </div>
 
               <div class="form-group">

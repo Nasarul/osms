@@ -44,9 +44,7 @@ include('../includes/header.php');
 					url: "load-cs.php",
 					type: "POST",
 					data: {
-						type: type,
-						id: category_id
-					},
+						type: type, id: category_id},
 					success: function(data) {
 						if (type == "subjectData") {
 							$("#subject").html(data);
@@ -74,5 +72,3 @@ include('../includes/header.php');
 		});
 	</script>
 </body>
-
-</html>

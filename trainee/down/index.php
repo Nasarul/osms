@@ -1,5 +1,6 @@
 <?php
 include('../includes/header.php');
+require_once('../config/dbcon.php');
 ?>
 
 
@@ -31,23 +32,34 @@ include('../includes/header.php');
 							<thead>
 								<tr>
 									<th>Course Name</th>
-									<!-- <th>Subject Code</th> -->
 									<th>Subject Name</th>
+									<th>Facilitator Name</th>
+									<th>Lecture Name</th>
 									<th>Actions</th>
 								</tr>
 							</thead>
 
 							<tbody>
-								<?php foreach ($query as $row): { ?> 
-									<tr>
-										<td><?php echo $row['course_name']; ?></td>
-										<!-- <td><?php echo $row['code']; ?></td> -->
-										<td><?php echo $row['name']; ?></td>
-										<td class="text-center">
-											<a href="download.php?sub_id=<?php echo $row['sub_id'] ?>" class="btn btn-success" title="Download"><i class="fa-solid fa-down"></i>Download</a>
-										</td>
-									</tr>
 								<?php
+								$i = 1;
+								$sql = "SELECT tbluploadlecture.upload_lecture_id, tbluploadlecture.lecture_name, tblcourse.course_name, tblsubject.subject_name, tblfacilitator.facilitator_name FROM tbluploadlecture LEFT JOIN tblcourse ON tbluploadlecture.course_id = tblcourse.course_id LEFT JOIN tblsubject ON tbluploadlecture.subject_id = tblsubject.subject_id LEFT JOIN tblfacilitator ON tbluploadlecture.facilitator_id = tblfacilitator.facilitator_id;";
+
+								$result = mysqli_query($conn, $sql);
+								if (mysqli_num_rows($result)) {
+									while ($row = mysqli_fetch_assoc($result)) {
+								?>
+
+										<tr>
+											<td><?php echo $row['course_name']; ?></td>
+											<td><?php echo $row['subject_name']; ?></td>
+											<td><?php echo $row['facilitator_name']; ?></td>
+											<td><?php echo $row['lecture_name']; ?></td>
+											<td class="text-center">
+												<a href="download.php?upload_lecture_id=<?php echo $row['upload_lecture_id'] ?>" class="btn btn-success" title="Download"><i class="fa-solid fa-down"></i>Download</a>
+											</td>
+										</tr>
+								<?php
+									}
 								}
 								?>
 							</tbody>

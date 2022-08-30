@@ -35,10 +35,10 @@ include_once('../includes/header.php')
               <img src="<?php echo $upload_dir . $row['image'] ?>" height="200">
             </div>
             <div class="col-md">
-              <!-- <h5 class="form-control"><i class="fa-solid fa-user"></i>
+              <h5 class="form-control"><i class="fa-solid fa-user"></i>
                 <span><?php echo $row['trainee_roll'] ?></span>
                 </i>
-              </h5> -->
+              </h5>
               <h5 class="form-control"><i class="fa-solid fa-user"></i>
                 <span><?php echo $row['trainee_name'] ?></span>
                 </i>

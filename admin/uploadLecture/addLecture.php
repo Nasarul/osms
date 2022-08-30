@@ -54,7 +54,6 @@ include('../config/dbcon.php');
                   ?>
                 </div>
 
-
                 <div class="form-group">
                   <label for="subject_name">Subject Name</label>
                   <?php
